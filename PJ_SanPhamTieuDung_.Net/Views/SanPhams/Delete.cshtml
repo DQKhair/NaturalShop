@@ -1,0 +1,71 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Xóa sản phẩm</h5>
+
+<h5 class="text-danger">Bạn có chắc chắn là muốn xóa sản phẩm không ?</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Đơn giá")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mô tả sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình ảnh")
+        </dt>
+
+        <dd>
+            <img style="width:20rem" src="@Html.DisplayFor(model => model.HinhAnh)" alt="anh pruducts" />
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mô tả chi tiết sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaChiTietSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tên danh mục sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Trở về", "Index","",new { @class ="btn btn-outline-success"})
+        </div>
+    }
+</div>

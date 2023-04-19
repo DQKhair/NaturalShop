@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PJ_SanPhamTieuDung_.Net.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Quản lý người dùng</h5>
+
+<p>
+    @Html.ActionLink("Tạo tài khoản", "Create","",new {@class="btn btn-success" })
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("Tên đăng nhập")
+        </th>
+        <th>
+            @Html.DisplayName("Mật khẩu")
+        </th>
+        <th>
+            @Html.DisplayName("Tên chức vụ")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDangNhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatKhau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChucVu.TenChucVu)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.MaUser },new {@class="btn btn-outline-success"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaUser }, new { @class = "btn btn-success" })
+        </td>
+    </tr>
+}
+</table>

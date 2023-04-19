@@ -1,0 +1,206 @@
+﻿@model IEnumerable<PJ_SanPhamTieuDung_.Net.Models.GetAllProducts_Result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<!-- home/index -->
+<div class="ms-3">
+    <!-- slider -->
+    <div class="banner">
+        <div class="slide-container" id="slide_contnainer">
+            <div class="dieuhuong">
+                <i class="fa fa-chevron-circle-left" onclick="Back();"></i>
+                <i class="fa fa-chevron-circle-right" onclick="Next();"></i>
+            </div>
+            <div class="chuyen-slide">
+                <img src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fslider1.jpg?alt=media&token=ee6ee3d6-6065-4380-81a0-7b86edd337d2">
+                <img src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fslider2.jpg?alt=media&token=b2aaa182-f27a-4ca1-b6e0-db61e9012175">
+                <img src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fslider3.png?alt=media&token=e54c7006-7eb7-4ab9-96c2-66934fb30aaa">
+            </div>
+        </div>
+    </div>
+    <!-- end slider -->
+    <!-- Giới thiệu -->
+    <div class="row my-3 container mx-auto">
+        <div class="col-md-6">
+            <h3 class="text-uppercase" style="color:var(--color-main)">giới thiệu</h3>
+            <div class="progress mb-2" style="height: 1px;">
+                <div class="progress-bar" role="progressbar" aria-label="Example 1px high" style="width: 100%; background-color: var(--color-main)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p><b>NATURAL SHOP - </b> Tư vấn và cung cấp sản phẩm xanh 100% thiên nhiên NATURAL SHOP cung cấp các dòng : Mỹ Phẩm cao cấp, Sản Phẩm Chăm Sóc Sức Khoẻ và Sản Phẩm Gia Dụng hàng ngày nguồn gốc thiên nhiên được ứng dụng từ công nghệ Cơ Lượng Tử , mang trọn vẹn những thành phần từ thiên nhiên, không sử dụng hoá chất trong việc bảo quản đến quy trình chiết xuất, sản xuất ra sản phẩm, giúp bảo vệ và chăm sóc gia đình bạn thật an toàn và chất lượng.</p>
+            <p>Tiêu Dùng Xanh - Xu Hướng Xanh là lựa chọn hàng đầu của đông đảo người tiêu dùng thông minh hiện nay, do đó NATURAL SHOP luôn chú trọng đến chất lượng sản phẩm cũng như chất lượng phục vụ giúp người tiêu dùng thật sự yên tâm khi tiêu dùng sản phẩm từ NATURAL SHOP. <b>Hotline: 0925.328.842</b></p>
+        </div>
+        <div class="col-md-6">
+            <img style="width: 100%;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fgioithieu.jpg?alt=media&token=1271dff4-08ce-4926-b4b8-0ba69343d68d" alt="gioithieu">
+        </div>
+    </div>
+    <div class="row bg_gioithieu text-center py-3 me-3 fs-5" style="background-image:url(https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com\/o\/Picture_SanPhamTieuDung%2FBG_gioithieu.jpg?alt=media&token=827302b3-5229-42b9-a50f-184c668cdcc6)">
+        <div class="col-md">
+            <p>Hotline:</p>
+            <p><b>0925.328.842</b></p>
+        </div>
+        <div class="col-md">
+            <p>Liên kết nhanh</p>
+            <div class=" d-flex justify-content-center">
+                <p><a href="#"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fpngwing.com%20(3).png?alt=media&token=40d5d907-64dd-4594-939b-4528c8b54c57" alt=""></a></p>
+                <p class="mx-2"><a href="#"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fpngwing.com.png?alt=media&token=0a376481-1aad-4340-b6de-c784faad9465" alt=""></a></p>
+                <p><a href="https://zalo.me/0925328842"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fzalo.png?alt=media&token=4c86ae04-bb78-43a0-a36a-a16594b4f0b4" alt=""></a></p>
+            </div>
+        </div>
+    </div>
+    <!-- end giới thiệu -->
+    <!-- QUANTUM BEAUTY WORLD -->
+    <div class="container mt-3">
+        <h2 class="text-uppercase" style="text-align: center;">QUANTUM BEAUTY WORLD</h2>
+        <div class="progress mx-auto" style="height: 2px;width: 30%;">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!-- groupcard -->
+        <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
+
+            @foreach (var item in ViewBag.dmsp1)
+            {
+                    <div class="col">
+                        <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                            <div class="card">
+                                <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                                    <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                                    @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+            }
+        </div>
+    </div>
+    <!-- QUANTUM DAILY WORLD -->
+    <div class="container mt-5">
+        <h2 class="text-uppercase" style="text-align: center;">QUANTUM BEAUTY WORLD</h2>
+        <div class="progress mx-auto" style="height: 2px;width: 30%;">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!-- groupcard -->
+        <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
+
+            @foreach (var item in ViewBag.dmsp2)
+            {
+                <div class="col">
+                    <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                        <div class="card">
+                            <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                                <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                                @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- QUANTUM HEALTHY WORLD -->
+    <div class="container mt-5">
+        <h2 class="text-uppercase" style="text-align: center;">QUANTUM healthy WORLD</h2>
+        <div class="progress mx-auto" style="height: 2px;width: 30%;">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!-- groupcard -->
+        <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
+            @foreach (var item in ViewBag.dmsp3)
+            {
+                <div class="col">
+                    <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                        <div class="card">
+                            <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                                <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                                @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- TIÊU DÙNG XANH AORI -->
+    <div class="container mt-5">
+        <h2 class="text-uppercase" style="text-align: center;">tiêu dùng xanh aori</h2>
+        <div class="progress mx-auto" style="height: 2px;width: 30%;">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!-- groupcard -->
+        <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
+            @foreach (var item in ViewBag.dmsp4)
+            {
+                <div class="col">
+                    <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                        <div class="card">
+                            <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                                <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                                @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<!-- SẢN PHẨM NỔI BẬT -->
+<div class="container">
+    <h2 class="text-uppercase" style="text-align: center;">sản phẩm nổi bậc</h2>
+    <div class="progress mx-auto" style="height: 2px;width: 30%;">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <!-- groupcard -->
+    <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
+        @foreach (var item in ViewBag.dmsp1)
+        {
+        <div class="col">
+            
+            <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                <div class="card">
+                    <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                        <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                        @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
+                    </div>
+                </div>
+            </a>
+        </div>
+        }
+
+    </div>
+</div>
+<!-- KHÁCH HÀNG NÓI GÌ VỀ CHÚNG TÔI -->
+<div class="container">
+    <h3 class="text-uppercase text-center">khách hàng nói gì về chúng tôi</h3>
+    <img style="margin-left: 50%;transform: translateX(-50%);" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fkhachhangnoigivechungtoi.png?alt=media&token=4ab59aa5-97c6-400d-b162-ce12eae51cee" alt="logokhachhangnoigivechungtoi">
+    <!-- people -->
+    <div class="row my-3">
+        <div class="col-md-4 text-center">
+            <img class="rounded-circle mx-auto d-block" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fuser1.png?alt=media&token=7f5b0670-6dec-4c99-b7cd-9e0c351a27dc" alt="avata_user">
+            <p class="my-3">Tôi thường đặt mỹ phẩm từ Aori Shop, rất hài lòng về dịch vụ chăm sóc cũng như về giá cả. Sẽ luôn ủng hộ và review tới bạn bè của tôi.</p>
+            <p><b>Bạn Thanh Mai chia sẻ</b></p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img class="rounded-circle mx-auto d-block" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fuser2.png?alt=media&token=013e60a8-0b7f-4bea-b69e-6a59393a41aa" alt="avata_user">
+            <p class="my-3">Tôi đặt mua tại Aori Shop nhiều lần hàng về khá nhanh, đóng gói cẩn thận, giá cả hợp lí. Chị chủ và nhân viên khá nhiệt tình và hài hước.</p>
+            <p><b>Bạn Quang Huy chia sẻ</b></p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img class="rounded-circle mx-auto d-block" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fuser3.jpg?alt=media&token=b22087f8-3a4c-4bd7-9b7a-8c459bdf6598" alt="avata_user">
+            <p class="my-3">Là người thường xuyên tìm hiểu về mỹ phẩm ,tôi được bạn bè giới thiệu qua Aori Shop vì rất uy tín và nhanh chóng. Tôi thấy rất hài lòng</p>
+            <p><b>Bạn Trâm Anh chia sẻ</b></p>
+        </div>
+    </div>
+</div>

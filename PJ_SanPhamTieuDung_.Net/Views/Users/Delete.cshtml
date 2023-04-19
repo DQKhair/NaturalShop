@@ -1,0 +1,48 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Xóa tài khoảng</h5>
+
+<h5 class="text-danger">Bạn có muốn xóa tài khoản không?</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên đăng nhập")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDangNhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mật khẩu")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tên chức vụ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChucVu.TenChucVu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa tài khoản" class="btn btn-danger my-3" />
+            @Html.ActionLink("Trở về", "Index","",new {@class="btn btn-outline-success" })
+        </div>
+    }
+</div>

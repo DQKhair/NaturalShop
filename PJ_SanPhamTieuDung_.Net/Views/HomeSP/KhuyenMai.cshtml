@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "KhuyenMai";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="container mt-3">
+    <h2 class="text-uppercase" style="text-align: center;">Sản phẩm khuyến mãi</h2>
+    <div class="progress mx-auto" style="height: 2px;width: 30%;">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <!-- groupcard -->
+    <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
+
+        @foreach (var item in ViewBag.sanphamkhuyenmai)
+        {
+            <div class="col">
+                <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                    <div class="card">
+                        <span style="right: -13%;top: 2%;" class="text-light position-absolute translate-middle p-2 bg-danger border border-light rounded-circle">
+                            Sale
+                        </span>
+                        <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                            <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                            @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.DanhMucSanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Xóa danh mục sản phẩm</h5>
+
+<h5 class="text-danger">Bạn có chắc chắn là muốn xóa nó không ?</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên danh mục sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDanhMucSanPham)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xác nhận xóa" class="btn btn-danger me-3" />
+            @Html.ActionLink("Trở về", "Index","",new { @class="btn btn-success"})
+        </div>
+    }
+</div>

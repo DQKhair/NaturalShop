@@ -1,0 +1,66 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Xem chi tiết</h5>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Giá sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mo tả sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình ảnh")
+        </dt>
+
+        <dd>
+            <img style="width:30rem" src="@Html.DisplayFor(model => model.HinhAnh)" alt="anh products" />
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mô tả chi tiết sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaChiTietSanPham)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tên danh mục sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaSanPham},new {@class = "btn btn-outline-success" })
+    @Html.ActionLink("Trở về", "Index","",new {@class="btn btn-success"})
+</p>

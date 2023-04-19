@@ -1,0 +1,27 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.DanhMucSanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DanhMucSanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDanhMucSanPham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDanhMucSanPham)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDanhMucSanPham }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,61 @@
+/*slider------------------------------------------------*/
+.banner {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-right: 18px;
+    justify-content: center;
+  }
+  .slide-container {
+    width: 80%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .chuyen-slide {
+    width: 9999px;
+    transition: all 0.5s;
+  }
+  .chuyen-slide img{
+    /* width: 1485px; */
+    height: 600px;
+    float: left;
+  }
+  .dieuhuong{
+    position: absolute;
+    color: var(--color-main);
+    font-size: 25px;
+    top: 46%;
+    padding-left: 17px;
+    width: 100%;
+  }
+  .banner:hover .dieuhuong{
+     display: block;
+  }
+  .dieuhuong i:last-child{
+    position: absolute;
+    right: 17px;
+  }
+  
+  .banner_page{
+    width: 81%;
+    height: 400px;
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-right: 18px;
+  }
+  .banner_page img{
+    width: 100%;
+    height: 100%;
+  }
+  /* mobile */
+  @media (max-width:740px){
+    .chuyen-slide img,
+    .banner{
+      height: 300px;
+    }
+  }

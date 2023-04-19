@@ -1,0 +1,93 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- RenderBody -->
+<div class="container my-3">
+    <div class="ms-3">
+        <!-- breadcrumb -->
+        <div class="container my-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item ms-3"><a href="@Url.Action("index","HomeSP")"><i class="fa-solid fa-house me-1"></i>Trang chủ</a></li>
+                    <li class="breadcrumb-item " aria-current="page">Danh mục sản phẩm</li>
+                    <li class="breadcrumb-item " aria-current="page"><a href="@Url.Action("index","HomeSP")">@Html.DisplayFor(model=>model.DanhMucSanPham.TenDanhMucSanPham)</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.TenSanPham)</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- end breadcrumb -->
+    </div>
+    <div class="ms-3 row">
+        <div class="col-md-4 my-3">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="@Html.DisplayFor(model=>model.HinhAnh)" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://aorishop.com/wp-content/uploads/2022/12/z4033365737923_246a82645826dd84bcba2579b6180282.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- <img style="width: 20rem;" class="shadow-sm border border-3" src="../content/img/quantum_beauty_world_taytebaochetloveworldrauma.jpg" alt="img_detail_sp"> -->
+        </div>
+        <div class="col-md-8 my-3">
+            <h3>@Html.DisplayFor(model=>model.TenSanPham)</h3>
+            <h4 class="text-danger">@Html.DisplayFor(model => model.DonGia) VNĐ</h4>
+            <h5>Thành phần:</h5>
+            <p>&#9752;@Html.DisplayFor(model=>model.MoTaSanPham)</p>
+            @*<p>&#9752; Water</p>
+            <p>&#9752; C15-19 Alkane</p>
+            <p>&#9752; Polyglyceryl-3 Diisostearte</p>
+            <p>&#9752; Ethylhexyl Methoxycinnamate</p>
+            <p>&#9752; Diethylamino Hydroxybenzoyl Hexyl Benzoate</p>
+            <p>&#9752;Titanium Dioxide</p>
+            <p>&#9752; Alumium Hydroxide</p>
+            <p>&#9752; Triethoxycaprylylsilane</p>
+            <p>&#9752; Silica, Glycerin, Joerjoba Oil</p>
+            <p>&#9752; Tocopheldimethy</p>
+            <p>&#9752; Dioxidanirate (H302)</p>
+            <p>&#9752; Beheneth-25 Methacrylate Crosspolymer</p>
+            <p>&#9752; Fragrance</p>
+            <p>&#9752; Tetrasodium EDTA</p>*@
+            <h5>Hướng dẫn sử dụng :</h5>
+            <p>&#9752;@Html.DisplayFor(model => model.CachDungSanPham)</p>
+            @*<p>- Kem nền trang điểm trắng hồng tự nhiên</p>
+            <p>- Che khuyết điểm mờ thâm nám tàn nhang</p>
+            <p>- Bb cream dưỡng da</p>
+            <p>- Chống nắng spf30+</p>*@
+            <hr>
+            <h5 class="text-danger">Số lượng</h5>
+            <div class="d-flex">
+                <p class="border border-1 px-2 down_qty" onclick="downto()" style="cursor: pointer;">-</p>
+                <input style="height:25px;" class="text-center mx-2" id="input_qty" type="number" value="1" min="1" max="10" step="1" />
+                <p class="border border-1 px-2 up_qty" onclick="upto()" style="cursor: pointer;">+</p>
+            </div>
+            <div class="my-3">
+                <a class="btn btn-success" href="@Url.Action("AddToCart", "Cart", new { ProductId = Model.MaSanPham})"> Đặt hàng</a>
+                <a class="btn btn-danger" href="https://zalo.me/0925328842">Mua sản phẩm</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EndBody -->
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSanPham }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

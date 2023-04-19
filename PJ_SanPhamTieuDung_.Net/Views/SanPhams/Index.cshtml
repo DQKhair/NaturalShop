@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PJ_SanPhamTieuDung_.Net.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Quản lý sản phẩm</h5>
+
+<p>
+    @Html.ActionLink("Thêm sản phẩm", "Create","",new {@class="btn btn-success" })
+</p>
+<table class="table table-hover text-center">
+    <tr>
+        <th>
+            @Html.DisplayName("Tên sản phẩm")
+        </th>
+        <th>
+            @Html.DisplayName("Hình ảnh")
+        </th>
+        <th>
+            @Html.DisplayName("Giá")
+        </th>
+        <th>
+            @Html.DisplayName("Tên danh mục sản phẩm")
+        </th>
+        <th>
+            @Html.DisplayName("Actions")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenSanPham)
+    </td>
+    <td>
+        <img style="width:10rem" src="@Html.DisplayFor(modelItem => item.HinhAnh)" alt="products" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DonGia)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DanhMucSanPham.TenDanhMucSanPham)
+    </td>
+    <td>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.MaSanPham },new {@class="btn btn-outline-success"})
+        @Html.ActionLink("Xem Chi Tiết", "Details", new { id = item.MaSanPham }, new { @class = "btn btn-outline-success" })
+        @Html.ActionLink("Xóa", "Delete", new { id = item.MaSanPham }, new { @class = "btn btn-success" })
+    </td>
+</tr>
+}
+
+</table>
