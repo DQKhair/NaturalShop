@@ -24,7 +24,5 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         public string HinhAnh2 { get; set; }
         public string HinhAnh3 { get; set; }
         public string khuyenmai { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public Nullable<int> Tien { get; set; }
     }
 }

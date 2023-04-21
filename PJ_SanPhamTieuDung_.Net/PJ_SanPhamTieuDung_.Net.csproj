@@ -128,20 +128,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DanhMucSanPhamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\DanhMucSanPhamsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeSPController.cs" />
-    <Compile Include="Controllers\NhanViensController.cs" />
-    <Compile Include="Controllers\SanPhamsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs">
       <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChucVu.cs">
+    <Compile Include="Models\ChucNang.cs">
       <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DanhMucSanPham.cs">
@@ -156,10 +156,10 @@
     <Compile Include="Models\HoaDon.cs">
       <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KhachHang.cs">
+    <Compile Include="Models\LoaiTaiKhoan.cs">
       <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhanVien.cs">
+    <Compile Include="Models\NguoiDung.cs">
       <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhuongThucThanhToan.cs">
@@ -184,9 +184,6 @@
       <DependentUpon>SanPhamTieuDung.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TrangThai.cs">
-      <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
       <DependentUpon>SanPhamTieuDung.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,6 +258,17 @@
     <Content Include="Models\SanPhamTieuDung.edmx.diagram">
       <DependentUpon>SanPhamTieuDung.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\DanhMucSanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucSanPhams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -287,26 +295,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\DanhMucSanPhams\Create.cshtml" />
-    <Content Include="Views\DanhMucSanPhams\Delete.cshtml" />
-    <Content Include="Views\DanhMucSanPhams\Details.cshtml" />
-    <Content Include="Views\DanhMucSanPhams\Edit.cshtml" />
-    <Content Include="Views\DanhMucSanPhams\Index.cshtml" />
-    <Content Include="Views\SanPhams\Create.cshtml" />
-    <Content Include="Views\SanPhams\Delete.cshtml" />
-    <Content Include="Views\SanPhams\Details.cshtml" />
-    <Content Include="Views\SanPhams\Edit.cshtml" />
-    <Content Include="Views\SanPhams\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\NhanViens\Create.cshtml" />
-    <Content Include="Views\NhanViens\Delete.cshtml" />
-    <Content Include="Views\NhanViens\Details.cshtml" />
-    <Content Include="Views\NhanViens\Edit.cshtml" />
-    <Content Include="Views\NhanViens\Index.cshtml" />
     <Content Include="Views\HomeSP\Create.cshtml" />
     <Content Include="Views\HomeSP\Delete.cshtml" />
     <Content Include="Views\HomeSP\Details.cshtml" />
@@ -316,9 +304,12 @@
     <Content Include="Views\HomeSP\GioiThieu.cshtml" />
     <Content Include="Views\HomeSP\KhuyenMai.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Showcart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -12,72 +12,103 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
     {
         SanPhamTieuDungEntities db = new SanPhamTieuDungEntities();
         // GET: Cart
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Showcart()
         {
-            List<SanPham> ShoppingCart = Session["ShoppingCart"] as List<SanPham>;
-            return View(ShoppingCart);
+            if (Session["Cart"] == null)
+                return View("EmptyCart");
+            Cart _cart = Session["Cart"] as Cart;
+            return View(_cart);
         }
 
-        public RedirectToRouteResult AddToCart(int ProductId)
+        public Cart GetCart()
         {
-           
-            if (Session["ShoppingCart"] == null) // Nếu giỏ hàng chưa được khởi tạo
+            Cart cart = Session["Cart"] as Cart;
+            if (cart == null || Session["Cart"] == null)
             {
-                Session["ShoppingCart"] = new List<SanPham>();  // Khởi tạo Session["giohang"] là 1 List<CartItem>
+                cart = new Cart();
+                Session["Cart"] = cart;
             }
-
-            List<SanPham> ShoppingCart = Session["ShoppingCart"] as List<SanPham>;  // Gán qua biến giohang dễ code
-
-            // Kiểm tra xem sản phẩm khách đang chọn đã có trong giỏ hàng chưa
-
-            if (ShoppingCart.FirstOrDefault(m => m.MaSanPham == ProductId) == null) // ko co sp nay trong gio hang
+            return cart;
+        }
+        public ActionResult AddToCart(int id)
+        {
+            var _pro = db.SanPhams.SingleOrDefault(s => s.MaSanPham == id);
+            if (_pro != null)
             {
-                SanPham prodouct = db.SanPhams.Find(ProductId);  // tim sp theo sanPhamID
-
-                SanPham newItem = new SanPham()
-                {
-                    MaSanPham = ProductId,
-                    TenSanPham = prodouct.TenSanPham,
-                    SoLuong = 1,
-                    HinhAnh = prodouct.HinhAnh,
-                    DonGia = prodouct.DonGia
-
-                };  // Tạo ra 1 CartItem mới
-
-                ShoppingCart.Add(newItem);  // Thêm CartItem vào giỏ 
+                GetCart().Add_Product_Cart(_pro);
             }
-            else
-            {
-                // Nếu sản phẩm khách chọn đã có trong giỏ hàng thì không thêm vào giỏ nữa mà tăng số lượng lên.
-                SanPham cardItem = ShoppingCart.FirstOrDefault(m => m.MaSanPham == ProductId);
-                cardItem.SoLuong++;
-            }
-
-            // Action này sẽ chuyển hướng về trang chi tiết sp khi khách hàng đặt vào giỏ thành công. Bạn có thể chuyển về chính trang khách hàng vừa đứng bằng lệnh return Redirect(Request.UrlReferrer.ToString()); nếu muốn.
-            return RedirectToAction("index", "Cart");
+            return RedirectToAction("ShowCart", "Cart");
         }
 
-        public RedirectToRouteResult UpdateAmount(int ProductId, int newAmount)
+        public ActionResult Update_Cart_Quantity(FormCollection form)
         {
-            // tìm carditem muon sua
-            List<SanPham> ShoppingCart = Session["ShoppingCart"] as List<SanPham>;
-            SanPham EditAmount = ShoppingCart.FirstOrDefault(m => m.MaSanPham == ProductId);
-            if (EditAmount != null)
-            {
-                EditAmount.SoLuong = newAmount;
-            }
-            return RedirectToAction("Index");
+            Cart cart = Session["Cart"] as Cart;
+            int id_pro = int.Parse(form["idPro"]);
+            int _quantity = int.Parse(form["cartQuantity"]);
+            cart.Update_quantity(id_pro, _quantity);
+            return RedirectToAction("Showcart", "Cart");
+        }
 
-        }
-        public RedirectToRouteResult RemoveItem(int ProductId)
+        public ActionResult RemoveCart(int id)
         {
-            List<SanPham> shoppingCart = Session["ShoppingCart"] as List<SanPham>;
-            SanPham DelItem = shoppingCart.FirstOrDefault(m => m.MaSanPham == ProductId);
-            if (DelItem != null)
-            {
-                shoppingCart.Remove(DelItem);
-            }
-            return RedirectToAction("Index");
+            Cart cart = Session["Cart"] as Cart;
+            cart.Remove_CartItem(id);
+            return RedirectToAction("Showcart", "Cart");
         }
+
+        //public PartialViewResult BagCart()
+        //{
+        //    int total_quantity_item = 0;
+        //    Cart cart = Session["Cart"] as Cart;
+        //    if (cart != null)
+        //        total_quantity_item = cart.Total_quantity();
+        //    ViewBag.QuantityCart = total_quantity_item;
+        //    return PartialView("BagCart");
+        //}
+
+        //public ActionResult CheckOut_Success()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult CheckOut(FormCollection from)
+        //{
+        //    try
+        //    {
+        //        Cart cart = Session["Cart"] as Cart;
+        //        OrderPro _order = new OrderPro();
+        //        _order.DateOrder = DateTime.Now;
+        //        _order.AddressDeliverry = from["AddressDeliverry"];
+        //        _order.IDCus = int.Parse(from["CodeCustomer"]);
+        //        database.OrderProes.Add(_order);
+        //        foreach (var item in cart.Items)
+        //        {
+        //            OrderDetail _oder_detail = new OrderDetail();
+        //            _oder_detail.IDOrder = _order.ID;
+        //            _oder_detail.IDProduct = item._product.ProductID;
+        //            _oder_detail.UnitPrice = (double)item._product.Price;
+        //            _oder_detail.Quantity = item._quantity;
+        //            database.OrderDetails.Add(_oder_detail);
+        //            foreach (var p in database.Products.Where(s => s.ProductID == _oder_detail.IDProduct))
+        //            {
+        //                var update_quan_pro = p.Quantity - item._quantity;
+        //                p.Quantity = update_quan_pro;
+        //            }
+        //        }
+        //        database.SaveChanges();
+        //        cart.ClearCart();
+        //        return RedirectToAction("CheckOut_Success", "ShopingCart");
+        //    }
+        //    catch
+        //    {
+        //        return Content(" Error checkout, Plesase check infomation of customer...thanks  ");
+
+        //    }
+        //}
     }
 }

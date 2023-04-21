@@ -28,20 +28,14 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         }
     
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual DbSet<ChucVu> ChucVus { get; set; }
+        public virtual DbSet<ChucNang> ChucNangs { get; set; }
         public virtual DbSet<DanhMucSanPham> DanhMucSanPhams { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
-        public virtual DbSet<KhachHang> KhachHangs { get; set; }
-        public virtual DbSet<NhanVien> NhanViens { get; set; }
+        public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
+        public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TrangThai> TrangThais { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-    
-        public virtual ObjectResult<getProductKhuyenMai_Result> getProductKhuyenMai()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProductKhuyenMai_Result>("getProductKhuyenMai");
-        }
     
         public virtual ObjectResult<GetAllProducts_Result> GetAllProducts(Nullable<int> madmsp)
         {
@@ -50,6 +44,11 @@ namespace PJ_SanPhamTieuDung_.Net.Models
                 new ObjectParameter("madmsp", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllProducts_Result>("GetAllProducts", madmspParameter);
+        }
+    
+        public virtual ObjectResult<getProductKhuyenMai_Result> getProductKhuyenMai()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProductKhuyenMai_Result>("getProductKhuyenMai");
         }
     }
 }

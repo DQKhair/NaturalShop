@@ -12,28 +12,21 @@ namespace PJ_SanPhamTieuDung_.Net.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SanPham
+    public partial class LoaiTaiKhoan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SanPham()
+        public LoaiTaiKhoan()
         {
-            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
+            this.ChucNangs = new HashSet<ChucNang>();
+            this.NguoiDungs = new HashSet<NguoiDung>();
         }
     
-        public int MaSanPham { get; set; }
-        public string TenSanPham { get; set; }
-        public Nullable<int> DonGia { get; set; }
-        public string MoTaSanPham { get; set; }
-        public string HinhAnh { get; set; }
-        public string MoTaChiTietSanPham { get; set; }
-        public Nullable<int> MaDanhMucSanPham { get; set; }
-        public string CachDungSanPham { get; set; }
-        public string HinhAnh2 { get; set; }
-        public string HinhAnh3 { get; set; }
-        public string khuyenmai { get; set; }
+        public int MaLoaiTaiKhoan { get; set; }
+        public string TenLoaiTaiKhoan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual DanhMucSanPham DanhMucSanPham { get; set; }
+        public virtual ICollection<ChucNang> ChucNangs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NguoiDung> NguoiDungs { get; set; }
     }
 }

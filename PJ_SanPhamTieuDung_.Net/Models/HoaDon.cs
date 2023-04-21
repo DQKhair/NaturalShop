@@ -24,13 +24,13 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         public Nullable<int> TongSoLuong { get; set; }
         public Nullable<int> TongTien { get; set; }
         public Nullable<System.DateTime> NgayMua { get; set; }
-        public Nullable<int> MaKhachHang { get; set; }
         public Nullable<int> MaPhuongThuc { get; set; }
         public Nullable<int> MaTrangThai { get; set; }
+        public Nullable<int> MaNguoiDung { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual KhachHang KhachHang { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
         public virtual PhuongThucThanhToan PhuongThucThanhToan { get; set; }
         public virtual TrangThai TrangThai { get; set; }
     }

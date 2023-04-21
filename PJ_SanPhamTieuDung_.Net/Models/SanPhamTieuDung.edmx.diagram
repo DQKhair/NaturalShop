@@ -5,25 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="23e3ced36e1c4db59282ed334cc92667" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChiTietHoaDon" Width="1.5" PointX="11" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChucVu" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.DanhMucSanPham" Width="1.5" PointX="10.625" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.HoaDon" Width="1.5" PointX="6.625" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.KhachHang" Width="1.5" PointX="3.625" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.NhanVien" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.PhuongThucThanhToan" Width="1.5" PointX="9.25" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.SanPham" Width="1.5" PointX="13.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.TrangThai" Width="1.5" PointX="7" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.User" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_HD" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_SP" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_USER_CHUCVU" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_SP_DMSP" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_KH" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_PTTT" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_TT" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_KH_USER" ManuallyRouted="false" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_NV_USER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="4.375" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChucNang" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.DanhMucSanPham" Width="1.5" PointX="3" PointY="15.625" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.HoaDon" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.LoaiTaiKhoan" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.NguoiDung" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.PhuongThucThanhToan" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.SanPham" Width="1.5" PointX="5.25" PointY="14.625" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.TrangThai" Width="1.5" PointX="3" PointY="9.5" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_HD" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_SP" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_CN_LTK" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_SP_DMSP" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_ND" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_PTTT" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_TT" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_ND_LTK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
