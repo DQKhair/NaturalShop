@@ -96,12 +96,21 @@
                         <a class="nav-link text-light" href="@Url.Action("LienHe", "HomeSP")">Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("ShowCart", "Cart")">
-                            Giỏ hàng <i class="fa-solid fa-basket-shopping"></i>@if (String.IsNullOrEmpty(cart_total_Quantity.Total_quantity().ToString()))
-                            {<span class=" text-bg-danger rounded px-1">0</span>}
-                            else
-                            {<span class=" text-bg-danger rounded px-1">@cart_total_Quantity.Total_quantity().ToString()</span>}
-                        </a>
+                        <div>
+                            <a class="nav-link text-light" href="@Url.Action("ShowCart", "Cart")">
+                                Giỏ hàng <i class="fa-solid fa-basket-shopping"></i>@if (cart_total_Quantity == null)
+                                {
+
+                                    int cart_total = 0;
+                                    <span class="text-bg-danger rounded px-1">@cart_total</span>
+                                }
+                                else
+                                {
+                                    int cart_total = Convert.ToInt32(cart_total_Quantity.Total_quantity().ToString());
+                                    <span class="text-bg-danger rounded px-1">@cart_total</span>
+                                }
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>

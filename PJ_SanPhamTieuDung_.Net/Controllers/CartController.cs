@@ -35,7 +35,6 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             {
                 cart = new Cart();
                 Session["Cart"] = cart;
-                //Session["Cart_total_quantity"] = cart.Total_quantity();
             }
             return cart;
         }
