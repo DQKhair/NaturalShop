@@ -13,6 +13,7 @@
           <Property Name="SoLuongSanPham" Type="int" />
           <Property Name="MaHoaDon" Type="int" />
           <Property Name="MaSanPham" Type="int" />
+          <Property Name="Gia" Type="int" />
         </EntityType>
         <EntityType Name="ChucNang">
           <Key>
@@ -29,6 +30,8 @@
           </Key>
           <Property Name="MaDanhMucSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenDanhMucSanPham" Type="nvarchar" MaxLength="30" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -41,6 +44,7 @@
           <Property Name="MaPhuongThuc" Type="int" />
           <Property Name="MaTrangThai" Type="int" />
           <Property Name="MaNguoiDung" Type="int" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -74,7 +78,7 @@
             <PropertyRef Name="MaSanPham" />
           </Key>
           <Property Name="MaSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenSanPham" Type="nvarchar" MaxLength="100" />
           <Property Name="DonGia" Type="int" />
           <Property Name="MoTaSanPham" Type="nvarchar(max)" />
           <Property Name="HinhAnh" Type="nvarchar(max)" />
@@ -84,6 +88,8 @@
           <Property Name="HinhAnh2" Type="nvarchar(max)" />
           <Property Name="HinhAnh3" Type="nvarchar(max)" />
           <Property Name="khuyenmai" Type="nvarchar" MaxLength="30" />
+          <Property Name="CongDung" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ThanhPhan" Type="nvarchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="TrangThai">
           <Key>
@@ -282,7 +288,7 @@
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
           </AssociationSet>
           <FunctionImport Name="GetAllProducts" ReturnType="Collection(SanPhamTieuDungModel.GetAllProducts_Result)">
-            <Parameter Name="madmsp" Mode="In" Type="Int32" />
+          <Parameter Name="madmsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getProductKhuyenMai" ReturnType="Collection(SanPhamTieuDungModel.getProductKhuyenMai_Result)" />
         </EntityContainer>
@@ -296,6 +302,7 @@
           <Property Name="MaSanPham" Type="Int32" />
           <NavigationProperty Name="HoaDon" Relationship="SanPhamTieuDungModel.FK_CTHD_HD" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
           <NavigationProperty Name="SanPham" Relationship="SanPhamTieuDungModel.FK_CTHD_SP" FromRole="ChiTietHoaDon" ToRole="SanPham" />
+          <Property Name="Gia" Type="Int32" />
         </EntityType>
         <EntityType Name="ChucNang">
           <Key>
@@ -314,6 +321,8 @@
           <Property Name="MaDanhMucSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenDanhMucSanPham" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="SanPhamTieuDungModel.FK_SP_DMSP" FromRole="DanhMucSanPham" ToRole="SanPham" />
+          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -330,6 +339,7 @@
           <NavigationProperty Name="NguoiDung" Relationship="SanPhamTieuDungModel.FK_HD_ND" FromRole="HoaDon" ToRole="NguoiDung" />
           <NavigationProperty Name="PhuongThucThanhToan" Relationship="SanPhamTieuDungModel.FK_HD_PTTT" FromRole="HoaDon" ToRole="PhuongThucThanhToan" />
           <NavigationProperty Name="TrangThai" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="HoaDon" ToRole="TrangThai" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -368,7 +378,7 @@
             <PropertyRef Name="MaSanPham" />
           </Key>
           <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenSanPham" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DonGia" Type="Int32" />
           <Property Name="MoTaSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -380,6 +390,8 @@
           <Property Name="khuyenmai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="SanPhamTieuDungModel.FK_CTHD_SP" FromRole="SanPham" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="DanhMucSanPham" Relationship="SanPhamTieuDungModel.FK_SP_DMSP" FromRole="SanPham" ToRole="DanhMucSanPham" />
+          <Property Name="CongDung" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ThanhPhan" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TrangThai">
           <Key>
@@ -520,6 +532,7 @@
           <EntitySetMapping Name="ChiTietHoaDons">
             <EntityTypeMapping TypeName="SanPhamTieuDungModel.ChiTietHoaDon">
               <MappingFragment StoreEntitySet="ChiTietHoaDon">
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
                 <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
                 <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
                 <ScalarProperty Name="SoLuongSanPham" ColumnName="SoLuongSanPham" />
@@ -540,6 +553,8 @@
           <EntitySetMapping Name="DanhMucSanPhams">
             <EntityTypeMapping TypeName="SanPhamTieuDungModel.DanhMucSanPham">
               <MappingFragment StoreEntitySet="DanhMucSanPham">
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
                 <ScalarProperty Name="TenDanhMucSanPham" ColumnName="TenDanhMucSanPham" />
                 <ScalarProperty Name="MaDanhMucSanPham" ColumnName="MaDanhMucSanPham" />
               </MappingFragment>
@@ -548,6 +563,7 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
                 <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
                 <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
                 <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
@@ -591,6 +607,8 @@
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="SanPhamTieuDungModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="ThanhPhan" ColumnName="ThanhPhan" />
+                <ScalarProperty Name="CongDung" ColumnName="CongDung" />
                 <ScalarProperty Name="khuyenmai" ColumnName="khuyenmai" />
                 <ScalarProperty Name="HinhAnh3" ColumnName="HinhAnh3" />
                 <ScalarProperty Name="HinhAnh2" ColumnName="HinhAnh2" />

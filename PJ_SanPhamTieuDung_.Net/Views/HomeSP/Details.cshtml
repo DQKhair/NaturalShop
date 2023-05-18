@@ -1,8 +1,30 @@
 ﻿@model PJ_SanPhamTieuDung_.Net.Models.SanPham
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    // convert DonGia ToString("n0")
+    int price = Convert.ToInt32(@Html.DisplayFor(model => model.DonGia).ToString());
+    //handle CachSuDung add Replace("\n", "<br/>")
+    string CachSuDung = (HttpUtility.HtmlDecode(Html.DisplayFor(model => model.CachDungSanPham).ToString())).Replace("\\n", " <br /> &#10146;");
+    // định dang chuổi sang html
+    HtmlString htmlStringCachSuDung = new HtmlString(CachSuDung);
+    //handle CongDung add Replace("\n", "<br/>")
+    string CongDung = (HttpUtility.HtmlDecode(Html.DisplayFor(model => model.CongDung).ToString())).Replace("\\n", " <br /> &#9752;");
+    // định dang chuổi sang html
+    HtmlString htmlStringCongDung = new HtmlString(CongDung);
+    //handle ThanhPhan add Replace("\n", "<br/>")
+    string ThanhPhan = (HttpUtility.HtmlDecode(Html.DisplayFor(model => model.ThanhPhan).ToString())).Replace("\\n", " <br /> &#9752;");
+    // định dang chuổi sang html
+    HtmlString htmlStringThanhPhan = new HtmlString(ThanhPhan);
+    //handle MoTa add Replace("\n", "<br/>")
+    string MoTa = (HttpUtility.HtmlDecode(Html.DisplayFor(model => model.MoTaSanPham).ToString())).Replace("\\n", " <br />");
+    // định dang chuổi sang html
+    HtmlString htmlStringMoTa = new HtmlString(MoTa);
+    //handle ThongTinSanPham add Replace("\n", "<br/>")
+    string MoTaChiTiet = (HttpUtility.HtmlDecode(Html.DisplayFor(model => model.MoTaChiTietSanPham).ToString())).Replace("\\n", " <br />");
+    // định dang chuổi sang html
+    HtmlString htmlStringMoTaChiTiet = new HtmlString(MoTaChiTiet);
 }
 
 <!-- RenderBody -->
@@ -12,9 +34,9 @@
         <div class="container my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item ms-3"><a href="@Url.Action("index","HomeSP")"><i class="fa-solid fa-house me-1"></i>Trang chủ</a></li>
+                    <li class="breadcrumb-item ms-3"><a href="@Url.Action("index", "HomeSP")"><i class="fa-solid fa-house me-1"></i>Trang chủ</a></li>
                     <li class="breadcrumb-item " aria-current="page">Danh mục sản phẩm</li>
-                    <li class="breadcrumb-item " aria-current="page"><a href="@Url.Action("index","HomeSP")">@Html.DisplayFor(model=>model.DanhMucSanPham.TenDanhMucSanPham)</a></li>
+                    <li class="breadcrumb-item " aria-current="page"><a href="@Url.Action($"{Html.DisplayFor(model => model.DanhMucSanPham.ActionName)}",$"{Html.DisplayFor(model => model.DanhMucSanPham.ControllerName)}")">@Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)</a></li>
                     <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.TenSanPham)</li>
                 </ol>
             </nav>
@@ -30,10 +52,10 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="@Html.DisplayFor(model=>model.HinhAnh)" class="d-block w-100" alt="...">
+                        <img src="@Html.DisplayFor(model => model.HinhAnh)" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="https://aorishop.com/wp-content/uploads/2022/12/z4033365737923_246a82645826dd84bcba2579b6180282.jpg" class="d-block w-100" alt="...">
+                        <img src="@Html.DisplayFor(model => model.HinhAnh2)" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -48,30 +70,52 @@
             <!-- <img style="width: 20rem;" class="shadow-sm border border-3" src="../content/img/quantum_beauty_world_taytebaochetloveworldrauma.jpg" alt="img_detail_sp"> -->
         </div>
         <div class="col-md-8 my-3">
-            <h3>@Html.DisplayFor(model=>model.TenSanPham)</h3>
-            <h4 class="text-danger">@Html.DisplayFor(model => model.DonGia) VNĐ</h4>
-            <h5>Thành phần:</h5>
-            <p>&#9752;@Html.DisplayFor(model=>model.MoTaSanPham)</p>
-            @*<p>&#9752; Water</p>
-            <p>&#9752; C15-19 Alkane</p>
-            <p>&#9752; Polyglyceryl-3 Diisostearte</p>
-            <p>&#9752; Ethylhexyl Methoxycinnamate</p>
-            <p>&#9752; Diethylamino Hydroxybenzoyl Hexyl Benzoate</p>
-            <p>&#9752;Titanium Dioxide</p>
-            <p>&#9752; Alumium Hydroxide</p>
-            <p>&#9752; Triethoxycaprylylsilane</p>
-            <p>&#9752; Silica, Glycerin, Joerjoba Oil</p>
-            <p>&#9752; Tocopheldimethy</p>
-            <p>&#9752; Dioxidanirate (H302)</p>
-            <p>&#9752; Beheneth-25 Methacrylate Crosspolymer</p>
-            <p>&#9752; Fragrance</p>
-            <p>&#9752; Tetrasodium EDTA</p>*@
-            <h5>Hướng dẫn sử dụng :</h5>
-            <p>&#9752;@Html.DisplayFor(model => model.CachDungSanPham)</p>
-            @*<p>- Kem nền trang điểm trắng hồng tự nhiên</p>
-            <p>- Che khuyết điểm mờ thâm nám tàn nhang</p>
-            <p>- Bb cream dưỡng da</p>
-            <p>- Chống nắng spf30+</p>*@
+            <h3>@Html.DisplayFor(model => model.TenSanPham)</h3>
+            <h4 class="text-danger">@price.ToString("n0") VNĐ</h4>
+            @{
+                if (!String.IsNullOrEmpty(CongDung) && !String.IsNullOrEmpty(CachSuDung) && String.IsNullOrEmpty(ThanhPhan))
+                {
+                    <h5>Công dụng</h5>
+                    <p>&#9752;@htmlStringCongDung</p>
+                    <br />
+                    <h5>Hướng dẫn sử dụng :</h5>
+                    <p>&#10146;@htmlStringCachSuDung</p>
+                }
+                else if (!String.IsNullOrEmpty(ThanhPhan) && !String.IsNullOrEmpty(CachSuDung) && String.IsNullOrEmpty(CongDung))
+                {
+                    <h5>Thành Phần</h5>
+                    <p>&#9752;@htmlStringThanhPhan</p>
+                    <br />
+                    <h5>Hướng dẫn sử dụng :</h5>
+                    <p>&#10146;@htmlStringCachSuDung</p>
+                }
+                else if (!String.IsNullOrEmpty(ThanhPhan) && !String.IsNullOrEmpty(CongDung) && String.IsNullOrEmpty(CachSuDung))
+                {
+                    <h5>Thành Phần</h5>
+                    <p>&#9752;@htmlStringThanhPhan</p>
+                    <br />
+                    <h5>Công dụng</h5>
+                    <p>&#9752;@htmlStringCongDung</p>
+                }
+                else if (!String.IsNullOrEmpty(ThanhPhan) && !String.IsNullOrEmpty(CongDung) && !String.IsNullOrEmpty(CachSuDung))
+                {
+                    <h5>Thành Phần</h5>
+                    <p>&#9752;@htmlStringThanhPhan</p>
+                    <br />
+                    <h5>Công dụng</h5>
+                    <p>&#9752;@htmlStringCongDung</p>
+                    <br />
+                    <h5>Hướng dẫn sử dụng :</h5>
+                    <p>&#10146;@htmlStringCachSuDung</p>
+                }
+                //tinh dau
+                if (Html.DisplayFor(model => model.TenSanPham).ToString() == "DẦU TI&#202;U")
+                {
+                    <h5>Lưu ý:</h5>
+                    <p>Không được uống</p>
+                    <p>Tránh tiếp xúc với mắt , vết thương hở</p>
+                }
+            }
             <hr>
             <h5 class="text-danger">Số lượng</h5>
             <div class="d-flex">
@@ -80,14 +124,52 @@
                 <p class="border border-1 px-2 up_qty" onclick="upto()" style="cursor: pointer;">+</p>
             </div>
             <div class="my-3">
-                <a class="btn btn-success" href="@Url.Action("AddToCart", "Cart", new {Id = Model.MaSanPham})"> Đặt hàng</a>
-                <a class="btn btn-danger" href="https://zalo.me/0925328842">Mua sản phẩm</a>
+                <a class="btn btn-success" href="https://zalo.me/0925328842">Liên hệ trực tiếp</a>
+                <a class="btn btn-danger" href="@Url.Action("AddToCart", "Cart", new { Id = Model.MaSanPham })"> Mua sản phẩm</a>
             </div>
         </div>
     </div>
+    <div>
+        @{
+        if (Html.DisplayFor(model => model.MaDanhMucSanPham).ToString() != "4")
+        {
+        <h3>Mô tả</h3>
+        <hr>
+        <p>@htmlStringMoTa</p>
+        <img class="my-3" style="width: 100%;" src="@Html.DisplayFor(model => model.HinhAnh3)" alt="anh san pham">
+            if (String.IsNullOrEmpty(Html.DisplayFor(model => model.MoTaChiTietSanPham).ToString()))
+            {
+                <div></div>
+            }
+            else
+            {
+                <h5 class="text-uppercase fw-bold">Thông tin sản phẩm</h5>
+                <p>@htmlStringMoTaChiTiet</p>
+            }
+            if (Html.DisplayFor(model => model.TenSanPham).ToString() == "Coffee")
+            {
+                <h5 class="text-uppercase fw-bold">Hướng dẫn bảo quản</h5>
+                <ul>
+                    <li>- Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp.</li>
+                </ul>
+            }
+            else
+            {
+                <h5 class="text-uppercase fw-bold">Hướng dẫn bảo quản</h5>
+                <ul>
+                    <li>- Nắp kín, để ở nơi khô ráo thoáng mát.</li>
+                    <li>- Để xa tầm với của trẻ em. Nếu sản phẩm rơi vào mắt hãy rửa sạch bằng nước.</li>
+                </ul>
+            }
+        <p>Xuất xứ: Việt Nam</p>
+        <p>HSD: 3 năm kể từ ngày sản xuất</p>
+        <p>NSX: Xem trên bao bì</p>
+        <h5 class="text-uppercase fw-bold">Thông tin thương hiệu</h5>
+        <p>Sau rất nhiều năm kinh nghiệm trong lĩnh vực chăm sóc sức khỏe và làm đẹp của đội ngũ sáng lập, Love World bắt đầu với ước mơ mang những sản phẩm thiên nhiên chất lượng cao đến với mọi người dân trên toàn thế giới. </p>
+        <p>Ứng dụng Cơ lượng tử đột phá cùng nguồn nguyên liệu 100% từ thiên nhiên, các sản phẩm Chăm sóc sức khoẻ & Làm đẹp của thương hiệu Love World Việt Nam NÓI KHÔNG với hoá chất độc hại mà đảm bảo an toàn với sức khỏe người tiêu dùng và thân thiện môi trường.</p>
+        <img style="width: 100%;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2FGiayCongNhan.jpg?alt=media&token=b2ea44dc-b2e2-4319-add0-2cf38fd08c9d" alt="giaycongnhan">
+        }
+        }
+    </div>
 </div>
 <!-- EndBody -->
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSanPham }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

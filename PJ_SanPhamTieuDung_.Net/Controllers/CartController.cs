@@ -24,7 +24,10 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             Cart _cart = Session["Cart"] as Cart;
             return View(_cart);
         }
-
+        public ActionResult EmptyCart()
+        {
+            return View();
+        }
         public Cart GetCart()
         {
             Cart cart = Session["Cart"] as Cart;
@@ -32,6 +35,7 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             {
                 cart = new Cart();
                 Session["Cart"] = cart;
+                //Session["Cart_total_quantity"] = cart.Total_quantity();
             }
             return cart;
         }
@@ -61,54 +65,52 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             return RedirectToAction("Showcart", "Cart");
         }
 
-        //public PartialViewResult BagCart()
-        //{
-        //    int total_quantity_item = 0;
-        //    Cart cart = Session["Cart"] as Cart;
-        //    if (cart != null)
-        //        total_quantity_item = cart.Total_quantity();
-        //    ViewBag.QuantityCart = total_quantity_item;
-        //    return PartialView("BagCart");
-        //}
+        public ActionResult CheckOut_Success()
+        {
+            return View();
+        }
 
-        //public ActionResult CheckOut_Success()
-        //{
-        //    return View();
-        //}
+        public ActionResult CheckOut(FormCollection from)
+        {
+            try
+            {
+                var sessionMaNguoiDung = (NguoiDung)Session["LoaiTaiKhoan"];
+                Cart cart = Session["Cart"] as Cart;
+                HoaDon hoaDon = new HoaDon();
+                if (Session["LoaiTaiKhoan"] != null)
+                {
+                    hoaDon.MaNguoiDung = sessionMaNguoiDung.MaNguoiDung;
+                    hoaDon.TenKhachHang = sessionMaNguoiDung.TenNguoiDung;
+                }
+                else
+                {
+                    hoaDon.MaNguoiDung = null;
+                    hoaDon.TenKhachHang = from["TenKhachHang"];
+                }
+                hoaDon.TongSoLuong = Convert.ToInt32(cart.Total_quantity());
+                hoaDon.TongTien = Convert.ToInt32(cart.Total_money());
+                hoaDon.NgayMua = DateTime.Now;
+                hoaDon.MaPhuongThuc = int.Parse(from["MaPhuongThuc"]);
+                hoaDon.MaTrangThai = 1;
+                db.HoaDons.Add(hoaDon);
+                foreach (var item in cart.Items)
+                {
+                    ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+                    chiTietHoaDon.SoLuongSanPham = item._quantity;
+                    chiTietHoaDon.MaHoaDon = hoaDon.MaHoaDon;
+                    chiTietHoaDon.MaSanPham = item._product.MaSanPham;
+                    chiTietHoaDon.Gia = (item._product.DonGia * item._quantity);
+                    db.ChiTietHoaDons.Add(chiTietHoaDon);
+                }
+                db.SaveChanges();
+                cart.ClearCart();
+                return RedirectToAction("CheckOut_Success", "Cart");
+            }
+            catch
+            {
+                return Content("Lỗi thanh toán, làm phiền kiểm tra lại thông tin đơn hàng");
 
-        //public ActionResult CheckOut(FormCollection from)
-        //{
-        //    try
-        //    {
-        //        Cart cart = Session["Cart"] as Cart;
-        //        OrderPro _order = new OrderPro();
-        //        _order.DateOrder = DateTime.Now;
-        //        _order.AddressDeliverry = from["AddressDeliverry"];
-        //        _order.IDCus = int.Parse(from["CodeCustomer"]);
-        //        database.OrderProes.Add(_order);
-        //        foreach (var item in cart.Items)
-        //        {
-        //            OrderDetail _oder_detail = new OrderDetail();
-        //            _oder_detail.IDOrder = _order.ID;
-        //            _oder_detail.IDProduct = item._product.ProductID;
-        //            _oder_detail.UnitPrice = (double)item._product.Price;
-        //            _oder_detail.Quantity = item._quantity;
-        //            database.OrderDetails.Add(_oder_detail);
-        //            foreach (var p in database.Products.Where(s => s.ProductID == _oder_detail.IDProduct))
-        //            {
-        //                var update_quan_pro = p.Quantity - item._quantity;
-        //                p.Quantity = update_quan_pro;
-        //            }
-        //        }
-        //        database.SaveChanges();
-        //        cart.ClearCart();
-        //        return RedirectToAction("CheckOut_Success", "ShopingCart");
-        //    }
-        //    catch
-        //    {
-        //        return Content(" Error checkout, Plesase check infomation of customer...thanks  ");
-
-        //    }
-        //}
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PJ_SanPhamTieuDung_.Net.Models.GetAllProducts_Result>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang Chủ";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 <!-- home/index -->
@@ -63,13 +63,13 @@
             {
                     <div class="col">
                         <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                            <div class="card">
+                            <div class="card h-100">
                                 <img src="@item.HinhAnh" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">@item.TenSanPham</h5>
                                     <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
-                                    @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
                                 </div>
+                                <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
                             </div>
                         </a>
                     </div>
@@ -89,13 +89,13 @@
             {
                 <div class="col">
                     <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                        <div class="card">
+                        <div class="card h-100">
                             <img src="@item.HinhAnh" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-dark">@item.TenSanPham</h5>
                                 <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
-                                @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
                             </div>
+                            <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
                         </div>
                     </a>
                 </div>
@@ -114,13 +114,13 @@
             {
                 <div class="col">
                     <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                        <div class="card">
+                        <div class="card h-100">
                             <img src="@item.HinhAnh" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-dark">@item.TenSanPham</h5>
                                 <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
-                                @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
                             </div>
+                            <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
                         </div>
                     </a>
                 </div>
@@ -139,13 +139,13 @@
             {
                 <div class="col">
                     <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                        <div class="card">
+                        <div class="card h-100">
                             <img src="@item.HinhAnh" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-dark">@item.TenSanPham</h5>
                                 <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
-                                @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
                             </div>
+                            <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
                         </div>
                     </a>
                 </div>
@@ -162,18 +162,18 @@
     </div>
     <!-- groupcard -->
     <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
-        @foreach (var item in ViewBag.dmsp1)
+        @foreach (var item in ViewBag.SanPhamNoiBat)
         {
         <div class="col">
             
             <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                <div class="card">
+                <div class="card h-100">
                     <img src="@item.HinhAnh" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-dark">@item.TenSanPham</h5>
                         <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
-                        @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })
                     </div>
+                    <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
                 </div>
             </a>
         </div>

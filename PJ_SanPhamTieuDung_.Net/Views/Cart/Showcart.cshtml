@@ -3,9 +3,29 @@
     ViewBag.Title = "Showcart";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+<style>
+
+    #cart_img_w-100 {
+        width: 25%;
+    }
+
+    #cart_update_quatity {
+        width: 25%
+    }
+    @@media only screen and (max-width: 740px){
+        #cart_img_w-100 {
+            width: 100%;
+        }
+
+        #cart_update_quatity {
+            width: 100%
+        }
+    }
+
+</style>
 <h5 class="fw-bold text-uppercase my-3">Giỏ hàng của tôi</h5>
 <p class="text-danger"><b>Khi bạn mua trên 2 sản phẩm thì bạn sẽ được giảm giá lên đến <span style="font-size:xx-large">10% </span>tổng giá sản phẩm</b></p>
-<a class="text-decoration-none" href="@Url.Action("Index","Home")">Mua thêm sản phẩm</a>
+<a class="text-decoration-none" href="@Url.Action("Index","HomeSP")">Mua thêm sản phẩm</a>
 @if (Model != null)
 {
 
@@ -26,14 +46,14 @@
                 decimal total = item._quantity * (decimal)item._product.DonGia.Value;
                 <tr>
                     <td>@Html.DisplayFor(model => item._product.TenSanPham)</td>
-                    <td><img class="w-25" src="@Url.Content(item._product.HinhAnh)" /></td>
+                    <td><img id="cart_img_w-100" src="@Url.Content(item._product.HinhAnh)" /></td>
                     <td class="text-danger">@Html.DisplayFor(model => item._product.DonGia) VNĐ</td>
-                    <td>
+                    <td class="w-25">
                         @using (Html.BeginForm("Update_Cart_Quantity", "Cart"))
                         {
                             <input type="hidden" value="@item._product.MaSanPham" name="idPro" />
-                            <input class="form-control w-25 d-inline" type="number" value="@item._quantity" name="cartQuantity" min="0" />
-                            <input class="btn btn-success" type="submit" value="Cập nhật" />
+                            <input id="cart_update_quatity"  class="form-control d-inline" type="number" value="@item._quantity" name="cartQuantity" min="0" />
+                            <input class="btn btn-success mt-1" type="submit" value="Cập nhật" />
                         }
                     </td>
                     <td class="text-danger">@total.ToString("n0") VNĐ</td>
@@ -47,22 +67,42 @@
     <div>
         @if (Model.Total_quantity() != 0)
         {
+            <p class="fw-bold">Tổng số lượng: <span>@Model.Total_quantity()</span></p>
             <p class="fw-bold">Tổng tiền: <span class="text-danger">@Model.Total_money().ToString("n0") VNĐ</span></p>
         }
         @using (Html.BeginForm("CheckOut", "Cart"))
         {
-            if (Model.Total_quantity() != 0)
+    <div>
+        <div class=" w-50 mx-auto">
+            @if (Model.Total_quantity() != 0)
             {
-
-                <label for="TenKH" class="form-label">Tên Khách hàng</label>
-                <input name="CodeCustomer" type="text" id="TenKH" class="form-control">
-                <label for="TenKH" class="form-label">Địa chỉ giao hàng</label>
-                <input name="AddressDelivery" type="text" id="DiaChiKH" class="form-control">
+                <h5 class="fw-bold text-uppercase text-center">Vui lòng điền thông tin</h5>
+                if (Session["LoaiTaiKhoan"] == null)
+                {
+                    <label for="TenKH" class="form-label">Tên Khách hàng</label>
+                    <input name="TenKhachHang" type="text" id="TenKH" class="form-control mw-100">
+                }
+                <label for="DiaChiGiaoHang" class="form-label">Địa chỉ giao hàng</label>
+                <input name="DiaChiGiaoHang" type="text" id="DiaChiKH" class="form-control mw-100">
                 <label for="SdtKH" class="form-label">Số điện thoại</label>
-                <input name="SdtKH" type="text" id="sdtKH" class="form-control">
+                <input name="SdtKhachHang" type="text" id="sdtKH" class="form-control mw-100">
+                <label for="PTT" class="form-label">Phương thức thanh toán</label> <br />
+                <input checked="checked"
+                       id="MaPhuongThuc"
+                       name="MaPhuongThuc"
+                       type="radio"
+                       value="2" /> <span>Thanh toán khi nhận hàng</span><br />
+                <input id="MaPhuongThuc"
+                       name="MaPhuongThuc"
+                       type="radio"
+                       value="1" /> <span>Thanh toán khác</span>
+
                 <div>
                     <input type="submit" name="CheckOut" class="btn btn-success" value="Thanh toán" />
-                    <a href="@Url.Action("RegisterUser", "LoginUser")" class="btn btn-success my-3">Register</a>
+                    @if (Session["LoaiTaiKhoan"] == null)
+                    {
+                        <a href="@Url.Action("RegisterUser", "LoginUser")" class="btn btn-success my-3">Register</a>
+                    }
                 </div>
 
             }
@@ -70,6 +110,8 @@
             {
                 <p class="text-danger" style="text-align:center">Chưa có sản phẩm nào! Vui lòng mua sản phẩm</p>
             }
+        </div>
+    </div>
         }
     </div>
 }

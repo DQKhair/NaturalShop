@@ -1,0 +1,75 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NguoiDung</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenNguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailNguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailNguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SdtNguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SdtNguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChiNguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChiNguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserNames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserNames)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassWords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassWords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiTaiKhoan.TenLoaiTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiTaiKhoan.TenLoaiTaiKhoan)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNguoiDung }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

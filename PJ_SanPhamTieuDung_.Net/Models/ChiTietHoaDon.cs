@@ -18,6 +18,7 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         public Nullable<int> SoLuongSanPham { get; set; }
         public Nullable<int> MaHoaDon { get; set; }
         public Nullable<int> MaSanPham { get; set; }
+        public Nullable<int> Gia { get; set; }
     
         public virtual HoaDon HoaDon { get; set; }
         public virtual SanPham SanPham { get; set; }

@@ -57,6 +57,7 @@
     <Property Name="MaSanPham" Type="Int32" />
     <NavigationProperty Name="HoaDon" Relationship="SanPhamTieuDungModel.FK_CTHD_HD" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
     <NavigationProperty Name="SanPham" Relationship="SanPhamTieuDungModel.FK_CTHD_SP" FromRole="ChiTietHoaDon" ToRole="SanPham" />
+    <Property Name="Gia" Type="Int32" />
   </EntityType>
   <EntityType Name="ChucNang">
     <Key>
@@ -75,6 +76,8 @@
     <Property Name="MaDanhMucSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenDanhMucSanPham" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SanPhams" Relationship="SanPhamTieuDungModel.FK_SP_DMSP" FromRole="DanhMucSanPham" ToRole="SanPham" />
+    <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="HoaDon">
     <Key>
@@ -91,6 +94,7 @@
     <NavigationProperty Name="NguoiDung" Relationship="SanPhamTieuDungModel.FK_HD_ND" FromRole="HoaDon" ToRole="NguoiDung" />
     <NavigationProperty Name="PhuongThucThanhToan" Relationship="SanPhamTieuDungModel.FK_HD_PTTT" FromRole="HoaDon" ToRole="PhuongThucThanhToan" />
     <NavigationProperty Name="TrangThai" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="HoaDon" ToRole="TrangThai" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="LoaiTaiKhoan">
     <Key>
@@ -129,7 +133,7 @@
       <PropertyRef Name="MaSanPham" />
     </Key>
     <Property Name="MaSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenSanPham" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DonGia" Type="Int32" />
     <Property Name="MoTaSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -141,6 +145,8 @@
     <Property Name="khuyenmai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChiTietHoaDons" Relationship="SanPhamTieuDungModel.FK_CTHD_SP" FromRole="SanPham" ToRole="ChiTietHoaDon" />
     <NavigationProperty Name="DanhMucSanPham" Relationship="SanPhamTieuDungModel.FK_SP_DMSP" FromRole="SanPham" ToRole="DanhMucSanPham" />
+    <Property Name="CongDung" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="ThanhPhan" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TrangThai">
     <Key>

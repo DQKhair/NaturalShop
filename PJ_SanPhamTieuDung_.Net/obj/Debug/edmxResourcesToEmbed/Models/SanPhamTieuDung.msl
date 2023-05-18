@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ChiTietHoaDons">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.ChiTietHoaDon">
         <MappingFragment StoreEntitySet="ChiTietHoaDon">
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
           <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
           <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
           <ScalarProperty Name="SoLuongSanPham" ColumnName="SoLuongSanPham" />
@@ -24,6 +25,8 @@
     <EntitySetMapping Name="DanhMucSanPhams">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.DanhMucSanPham">
         <MappingFragment StoreEntitySet="DanhMucSanPham">
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
           <ScalarProperty Name="TenDanhMucSanPham" ColumnName="TenDanhMucSanPham" />
           <ScalarProperty Name="MaDanhMucSanPham" ColumnName="MaDanhMucSanPham" />
         </MappingFragment>
@@ -32,6 +35,7 @@
     <EntitySetMapping Name="HoaDons">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
         <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
           <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
           <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
           <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
@@ -75,6 +79,8 @@
     <EntitySetMapping Name="SanPhams">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.SanPham">
         <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="ThanhPhan" ColumnName="ThanhPhan" />
+          <ScalarProperty Name="CongDung" ColumnName="CongDung" />
           <ScalarProperty Name="khuyenmai" ColumnName="khuyenmai" />
           <ScalarProperty Name="HinhAnh3" ColumnName="HinhAnh3" />
           <ScalarProperty Name="HinhAnh2" ColumnName="HinhAnh2" />

@@ -26,6 +26,9 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             ViewBag.dmsp3 = dmsp3;
             var dmsp4 = db.GetAllProducts(4).ToList();
             ViewBag.dmsp4 = dmsp4;
+            //var SanPhamNoiBat = db.SanPhams.Where(m => m.khuyenmai.ToLower() == "có");
+            var SanPhamNoiBat = db.getProductKhuyenMai().ToList();
+            ViewBag.SanPhamNoiBat = SanPhamNoiBat;
             return View();
         }
 
@@ -47,12 +50,36 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
         {
             return View();
         }
+        public ActionResult DMQuantumBeautyWorld()
+        {
+            return View(db.GetAllProducts(1));
+        }
+        public ActionResult DMQuantumDailyWorld()
+        {
+            return View(db.GetAllProducts(2));
+        }
+        public ActionResult DMQuantumHeathyWorld()
+        {
+            return View(db.GetAllProducts(3));
+        }
+        public ActionResult DMTieuDungXanhAori()
+        {
+            return View(db.GetAllProducts(4));
+        }
         public ActionResult KhuyenMai()
         {
             ViewBag.sanphamkhuyenmai = db.getProductKhuyenMai().ToList();
             return View();
         }
         public ActionResult TinTuc()
+        {
+            return View();
+        }
+        public ActionResult DetailsTinTuc(int id)
+        {
+            return View();
+        }
+        public ActionResult LienHe()
         {
             return View();
         }

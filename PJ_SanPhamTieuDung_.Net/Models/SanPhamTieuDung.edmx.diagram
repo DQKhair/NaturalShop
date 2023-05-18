@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="23e3ced36e1c4db59282ed334cc92667" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="4.375" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChucNang" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.DanhMucSanPham" Width="1.5" PointX="3" PointY="15.625" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.HoaDon" Width="1.5" PointX="5.25" PointY="3.875" />
+      <Diagram DiagramId="23e3ced36e1c4db59282ed334cc92667" Name="Diagram1" ZoomLevel="69">
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChiTietHoaDon" Width="1.5" PointX="9" PointY="5.375" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.ChucNang" Width="1.5" PointX="3.125" PointY="1.375" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.DanhMucSanPham" Width="1.5" PointX="13.75" PointY="6.625" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.HoaDon" Width="1.5" PointX="6.375" PointY="5.625" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.LoaiTaiKhoan" Width="1.5" PointX="0.75" PointY="3.125" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.NguoiDung" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.PhuongThucThanhToan" Width="1.5" PointX="3" PointY="11.75" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.SanPham" Width="1.5" PointX="5.25" PointY="14.625" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.TrangThai" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.NguoiDung" Width="1.5" PointX="3.125" PointY="4.25" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.PhuongThucThanhToan" Width="1.5" PointX="4" PointY="8.125" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.SanPham" Width="1.5" PointX="11.375" PointY="5.875" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.TrangThai" Width="1.5" PointX="8.625" PointY="8.25" />
         <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_HD" />
         <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_SP" />
         <AssociationConnector Association="SanPhamTieuDungModel.FK_CN_LTK" />

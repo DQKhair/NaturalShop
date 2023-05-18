@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutAuthentication.cshtml";
+}
+<!-- RenderBody -->
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="mx-auto my-5" style="width: 50%;">
+            <h3 class="text-center text-uppercase fs-2 fw-bold" style="color:var(--color-main)">Đăng nhập</h3>
+            <div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Tên đăng nhập</label>
+                    <input name="username" type="text" class="form-control" id="username" style="max-width:none">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input name="password" type="password" class="form-control" id="password" style="max-width:none">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="savePassword">
+                    <label class="form-check-label" for="savePassword">Lưu mật khẩu</label>
+                </div>
+                <a class="d-block my-3" href="@Url.Action("SignUp","Authentication")">Đăng ký tài khoản</a>
+                <button type="submit" class="btn btn-success">Đăng nhập</button>
+            </div>
+        </div>
+    }
+</div>
+<!-- EndBody -->

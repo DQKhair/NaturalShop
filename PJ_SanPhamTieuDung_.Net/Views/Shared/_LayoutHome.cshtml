@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using PJ_SanPhamTieuDung_.Net.Models;
+@{
+    SanPhamTieuDungEntities db = new SanPhamTieuDungEntities();
+    var listDanhMucSanPham = db.DanhMucSanPhams.ToList();
+    var cart_total_Quantity = (Cart)Session["Cart"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,12 +24,26 @@
     <!-- header -->
     <header class="container-fluid ">
         <!-- header_head -->
-        <div class="logo_head d-flex justify-content-center align-items-center mt-3 mobile_header">
+        <div class="logo_head d-flex justify-content-center align-items-center mt-3 mobile_header d-flex justify-content-around">
             <div><img style="width: 15rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2FlogoNaturalShop.png?alt=media&token=04c3a5b4-6740-4191-8408-fd6172665132" alt="logo"></div>
 
             <div>
                 <h2 class="text-center text-uppercase">Natural Shop</h2>
                 <p class="fs-3 text-center"> <b>Tư vấn và cung cấp sản phẩm xanh 100% thiên nhiên</b></p>
+            </div>
+
+            <div>
+                @if (Session["MaNguoiDung"] != null)
+                {
+                    var tennguoidung = (NguoiDung)Session["LoaiTaiKhoan"];
+                    <a class="text-success text-decoration-none me-2" href="#">Xin chào @tennguoidung.TenNguoiDung</a>
+                    <a class="btn btn-outline-success" href="@Url.Action("Logout", "Authentication")">Đăng xuất</a>
+                }
+                else
+                {
+                    <a class="btn btn-success" href="@Url.Action("Login", "Authentication")">Đăng nhập</a>
+                    <a class="btn btn-outline-success" href="@Url.Action("Signup", "Authentication")">Đăng ký</a>
+                }
             </div>
         </div>
         <div class="progress" style="height: 1px;">
@@ -34,39 +54,54 @@
     <!-- nav -->
     <nav class="navbar navbar-expand-lg mt-3" style="background-color: var(--color-main);">
         <div class="container fw-normal text-uppercase">
-            <a class="navbar-brand text-light ms-3" href="@Url.Action("index","HomeSP")">Trang Chủ</a>
+            <a class="navbar-brand text-light ms-3" href="@Url.Action("index", "HomeSP")">Trang Chủ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="@Url.Action("GioiThieu","HomeSP")">Giới thiệu</a>
+                        @if (Session["MaNguoiDung"] != null)
+                        {
+                            var tennguoidung = (NguoiDung)Session["LoaiTaiKhoan"];
+                            <a id="nav_moblie_login" class="nav-link active text-light " aria-current="page" href="#">Xin chào @tennguoidung.TenNguoiDung</a>
+                            <a id="nav_moblie_logout" class="nav-link active text-light " aria-current="page" href="@Url.Action("Logout", "Authentication")">Đăng Xuất</a>
+                        }
+                        else
+                        {
+                            <a id="nav_moblie_login" class="nav-link active text-light " aria-current="page" href="@Url.Action("Login", "Authentication")">Đăng nhập</a>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" href="@Url.Action("GioiThieu", "HomeSP")">Giới thiệu</a>
                     </li>
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Danh mục sản phẩm
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item text-uppercase" href="@Url.Action("QuantumBeatyWorld","HomeSP")">Quantum beaty world</a></li>
-                            <li><a class="dropdown-item text-uppercase" href="@Url.Action("QuantumDailyWorld","HomeSP")">Quantum daily world</a></li>
-                            <li><a class="dropdown-item text-uppercase" href="@Url.Action("QuantumHealthyWorld","HomeSP")">Quantum healthy world</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-uppercase" href="@Url.Action("TieuDungXanhAori","HomeSP")">Tiêu dùng xanh aori</a></li>
+                            @foreach (var item in listDanhMucSanPham)
+                            {
+                                <li><a class="dropdown-item text-uppercase" href="@Url.Action($"{item.ActionName}", $"{item.ControllerName}")">@item.TenDanhMucSanPham</a></li>
+                            }
                         </ul>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("KhuyenMai","HomeSP")">Khuyến mãi</a>
+                        <a class="nav-link text-light" href="@Url.Action("KhuyenMai", "HomeSP")">Khuyến mãi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("TinTuc","HomeSP")">Tin Tức</a>
+                        <a class="nav-link text-light" href="@Url.Action("TinTuc", "HomeSP")">Tin Tức</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("LienHe","HomeSP")">Liên hệ</a>
+                        <a class="nav-link text-light" href="@Url.Action("LienHe", "HomeSP")">Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("ShowCart","Cart")">Giỏ hàng</a>
+                        <a class="nav-link text-light" href="@Url.Action("ShowCart", "Cart")">
+                            Giỏ hàng <i class="fa-solid fa-basket-shopping"></i>@if (String.IsNullOrEmpty(cart_total_Quantity.Total_quantity().ToString()))
+                            {<span class=" text-bg-danger rounded px-1">0</span>}
+                            else
+                            {<span class=" text-bg-danger rounded px-1">@cart_total_Quantity.Total_quantity().ToString()</span>}
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -119,7 +154,8 @@
     <!-- copyright -->
     <div class="bg-dark text-light text-center"><p class="mb-auto">Copyright 2022 © K02</p></div>
     <!-- end copyright -->
-
+    @* scriptIcon *@
+    <script src="https://kit.fontawesome.com/45dbf4fa32.js" crossorigin="anonymous"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

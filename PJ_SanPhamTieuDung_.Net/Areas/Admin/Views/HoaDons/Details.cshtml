@@ -1,0 +1,75 @@
+﻿@model PJ_SanPhamTieuDung_.Net.Models.HoaDon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HoaDon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TongSoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongSoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayMua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayMua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.TenNguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.TenNguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai.TenTrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai.TenTrangThai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHoaDon }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

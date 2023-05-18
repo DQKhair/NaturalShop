@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_LayoutAuthentication.cshtml";
+}
+
+<!-- RenderBody -->
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class=" mx-auto my-5" style="width: 50%;">
+            <h3 class="text-center text-uppercase fs-2 fw-bold" style="color:var(--color-main)">Đăng Ký tài khoản</h3>
+            <div>
+                <div class="mb-3">
+                    <label for="HoTen" class="form-label">Họ và tên</label>
+                    <input name="TenNguoiDung" type="text" class="form-control" id="HoTen" placeholder="Nguyễn Văn A" style="max-width:none" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input name="EmailNguoiDung" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Nguyenvana@gmail.com" style="max-width:none" required>
+                    <div id="emailHelp" class="form-text">Chúng tôi sẽ không chia sẻ email của bạn cho bất kỳ ai khác</div>
+                </div>
+                <div class="mb-3">
+                    <label for="SDT" class="form-label">Số điện thoại</label>
+                    <input class="form-control" type="tel" id="phone" name="SdtNguoiDung" placeholder="0123-456-789" pattern="[0-9]{4}[0-9]{3}[0-9]{3}" required style="max-width:none">
+                </div>
+                <div class="mb-3">
+                    <label for="DiaChi" class="form-label">Địa chỉ</label>
+                    <input name="DiaChiNguoiDung" type="text" class="form-control" id="DiaChi" style="max-width:none" placeholder="123/4 Cách Mạng Tháng 8, Phường 6, Q.Tân Bình, TP.HCM ">
+                </div>
+                <div class="mb-3">
+                    <label for="usernames" class="form-label">Tên tài khoản</label>
+                    <input name="UserNames" type="text" class="form-control" id="usernames" placeholder="UserName" style="max-width:none" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passwords" class="form-label">Mật khẩu</label>
+                    <input name="PassWords" type="password" class="form-control" id="passwords" style="max-width:none" required>
+                    <div id="passHelp" class="form-text">Tối thiểu 6 ký tự và tối đa 30 ký tự</div>
+                </div>
+                <div class="mb-3">
+                    <label for="repasswords" class="form-label">Nhâp lại mật khẩu</label>
+                    <input type="password" class="form-control" id="repasswords" style="max-width:none">
+                </div>
+                <a class="d-block my-3" href="@Url.Action("login","Authentication")">Tôi đã có tài khoản rồi !</a>
+                <button type="submit" class="btn btn-success">Đăng ký</button>
+            </div>
+        </div>
+    }
+</div>
+<!-- EndBody -->

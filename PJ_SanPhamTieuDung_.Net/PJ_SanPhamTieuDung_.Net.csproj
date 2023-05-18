@@ -129,8 +129,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChiTietHoaDonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DanhMucSanPhamsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HoaDonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeSPController.cs" />
@@ -269,6 +273,21 @@
     <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -305,6 +324,17 @@
     <Content Include="Views\HomeSP\KhuyenMai.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Showcart.cshtml" />
+    <Content Include="Views\Cart\EmptyCart.cshtml" />
+    <Content Include="Views\Shared\_LayoutAuthentication.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Authentication\Signup.cshtml" />
+    <Content Include="Views\Cart\CheckOut_Success.cshtml" />
+    <Content Include="Views\HomeSP\DMQuantumBeautyWorld.cshtml" />
+    <Content Include="Views\HomeSP\DMQuantumDailyWorld.cshtml" />
+    <Content Include="Views\HomeSP\DMQuantumHeathyWorld.cshtml" />
+    <Content Include="Views\HomeSP\DMTieuDungXanhAori.cshtml" />
+    <Content Include="Views\HomeSP\LienHe.cshtml" />
+    <Content Include="Views\HomeSP\TinTuc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

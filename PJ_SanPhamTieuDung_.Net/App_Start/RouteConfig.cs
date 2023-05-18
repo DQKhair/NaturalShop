@@ -19,5 +19,6 @@ namespace PJ_SanPhamTieuDung_.Net
                 defaults: new { controller = "HomeSP", action = "Index", id = UrlParameter.Optional }
             );
         }
+
     }
 }

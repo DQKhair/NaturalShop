@@ -31,6 +31,8 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         public string HinhAnh2 { get; set; }
         public string HinhAnh3 { get; set; }
         public string khuyenmai { get; set; }
+        public string CongDung { get; set; }
+        public string ThanhPhan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }

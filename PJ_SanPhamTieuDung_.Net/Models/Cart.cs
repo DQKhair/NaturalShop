@@ -63,7 +63,7 @@ namespace PJ_SanPhamTieuDung_.Net.Models
 
         public void ClearCart()
         {
-            items.Clear();
+            items.Clear(); // xóa giỏ hàng
         }
     }
 }
