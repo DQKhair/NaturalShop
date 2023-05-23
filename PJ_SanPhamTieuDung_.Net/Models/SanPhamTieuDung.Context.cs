@@ -28,14 +28,14 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         }
     
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual DbSet<ChucNang> ChucNangs { get; set; }
-        public virtual DbSet<DanhMucSanPham> DanhMucSanPhams { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TrangThai> TrangThais { get; set; }
+        public virtual DbSet<DanhMucSanPham> DanhMucSanPhams { get; set; }
+        public virtual DbSet<ChucNang> ChucNangs { get; set; }
     
         public virtual ObjectResult<GetAllProducts_Result> GetAllProducts(Nullable<int> madmsp)
         {

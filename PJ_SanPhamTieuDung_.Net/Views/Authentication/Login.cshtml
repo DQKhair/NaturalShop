@@ -10,6 +10,8 @@
         <div class="mx-auto my-5" style="width: 50%;">
             <h3 class="text-center text-uppercase fs-2 fw-bold" style="color:var(--color-main)">Đăng nhập</h3>
             <div>
+                @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+                <p>@ViewBag.error</p>
                 <div class="mb-3">
                     <label for="username" class="form-label">Tên đăng nhập</label>
                     <input name="username" type="text" class="form-control" id="username" style="max-width:none">

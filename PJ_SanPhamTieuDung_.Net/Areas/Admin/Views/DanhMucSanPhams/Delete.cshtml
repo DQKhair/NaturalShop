@@ -2,32 +2,29 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h5 class="text-uppercase fw-bold">Xóa danh mục sản phẩm</h5>
 
-<h3>Are you sure you want to delete this?</h3>
+<h5 class="text-danger">Bạn có chắc muốn xóa không?</h5>
 <div>
-    <h4>DanhMucSanPham</h4>
+    <div class="d-flex justify-content-between">
+        <h5>Danh mục sản phẩm</h5>
+        <p>@Html.ActionLink("Trở về", "Index")</p>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDanhMucSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenDanhMucSanPham)
-        </dd>
-
-    </dl>
-
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Tên danh mục sản phẩm")</span>
+            <input class="form-control my-1" type="text" name="TenDanhMuc" value="@Html.DisplayFor(model => model.TenDanhMucSanPham)" readonly />
+        </div>
+    </div>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xác nhận xóa" class="btn btn-danger my-2" />
         </div>
     }
 </div>

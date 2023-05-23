@@ -12,26 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ChucNangs">
-      <EntityTypeMapping TypeName="SanPhamTieuDungModel.ChucNang">
-        <MappingFragment StoreEntitySet="ChucNang">
-          <ScalarProperty Name="MaLoaiTaiKhoan" ColumnName="MaLoaiTaiKhoan" />
-          <ScalarProperty Name="Router" ColumnName="Router" />
-          <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
-          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DanhMucSanPhams">
-      <EntityTypeMapping TypeName="SanPhamTieuDungModel.DanhMucSanPham">
-        <MappingFragment StoreEntitySet="DanhMucSanPham">
-          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
-          <ScalarProperty Name="TenDanhMucSanPham" ColumnName="TenDanhMucSanPham" />
-          <ScalarProperty Name="MaDanhMucSanPham" ColumnName="MaDanhMucSanPham" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="HoaDons">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
         <MappingFragment StoreEntitySet="HoaDon">
@@ -137,5 +117,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="DanhMucSanPhams">
+      <EntityTypeMapping TypeName="SanPhamTieuDungModel.DanhMucSanPham">
+        <MappingFragment StoreEntitySet="DanhMucSanPham">
+          <ScalarProperty Name="TenDanhMucSanPham" ColumnName="TenDanhMucSanPham" />
+          <ScalarProperty Name="MaDanhMucSanPham" ColumnName="MaDanhMucSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChucNangs">
+      <EntityTypeMapping TypeName="SanPhamTieuDungModel.ChucNang">
+        <MappingFragment StoreEntitySet="ChucNang">
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="MaLoaiTaiKhoan" ColumnName="MaLoaiTaiKhoan" />
+          <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
+          <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

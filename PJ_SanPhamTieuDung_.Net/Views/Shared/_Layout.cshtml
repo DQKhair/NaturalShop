@@ -1,4 +1,9 @@
 ﻿@using PJ_SanPhamTieuDung_.Net.Models;
+@{ 
+    SanPhamTieuDungEntities db = new SanPhamTieuDungEntities();
+    var loaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
+    var listChucNang =db.ChucNangs.Where(s=>s.MaLoaiTaiKhoan == loaitaikhoan.MaLoaiTaiKhoan).ToList();
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +20,6 @@
             color: var(--color-main)
         }
     </style>
-    @{
-        var loaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
-
-
-    }
         @if (loaitaikhoan.MaLoaiTaiKhoan == 1 || loaitaikhoan.MaLoaiTaiKhoan == 2)
         {
             <!-- header -->
@@ -43,11 +43,10 @@
                 <div class="col-md-2 my-3">
                     <h3 class="text-center fw-bold text-uppercase">@loaitaikhoan.LoaiTaiKhoan.TenLoaiTaiKhoan</h3>
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action" href="~/admin/DanhMucSanPhams/index">Quản lý Danh mục sản phẩm</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/SanPhams/index">Quản lý sản phẩm</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/NguoiDungs/index">Quản lý Người Dùng</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/HoaDons/index">Quản lý đơn hàng</a>
-                        <a class="list-group-item list-group-item-action" href="~/admin/ChiTietHoaDons/index">Quản lý chi tiết hóa đơn</a>
+                        @foreach(var item in listChucNang)
+                         {
+                            <a class="list-group-item list-group-item-action" href="~/admin/@item.ControllerName/@item.ActionName">@item.TenChucNang</a>
+                         }
                         <a class="list-group-item list-group-item-action" href="~/Authentication/Logout">Đăng xuất</a>
                     </div>
                 </div>
@@ -99,7 +98,7 @@
 
             @Scripts.Render("~/bundles/jquery")
             @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
+            @RenderSection("scripts", required: false)          
         }
 </body>
 </html>

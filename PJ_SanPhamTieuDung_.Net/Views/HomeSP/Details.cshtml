@@ -36,7 +36,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item ms-3"><a href="@Url.Action("index", "HomeSP")"><i class="fa-solid fa-house me-1"></i>Trang chủ</a></li>
                     <li class="breadcrumb-item " aria-current="page">Danh mục sản phẩm</li>
-                    <li class="breadcrumb-item " aria-current="page"><a href="@Url.Action($"{Html.DisplayFor(model => model.DanhMucSanPham.ActionName)}",$"{Html.DisplayFor(model => model.DanhMucSanPham.ControllerName)}")">@Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)</a></li>
+                    <li class="breadcrumb-item " aria-current="page"><a href="@Url.Action("DmspHome", "HomeSP", new { id = Html.DisplayFor(m => m.MaDanhMucSanPham) })">@Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)</a></li>
                     <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.TenSanPham)</li>
                 </ol>
             </nav>

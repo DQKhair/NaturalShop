@@ -17,7 +17,6 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
         // GET: HomeSP
         public ActionResult Index()
         {
-            
             var dmsp = db.GetAllProducts(1).ToList();
             ViewBag.dmsp1 = dmsp;
             var dmsp2 = db.GetAllProducts(2).ToList();
@@ -26,7 +25,6 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             ViewBag.dmsp3 = dmsp3;
             var dmsp4 = db.GetAllProducts(4).ToList();
             ViewBag.dmsp4 = dmsp4;
-            //var SanPhamNoiBat = db.SanPhams.Where(m => m.khuyenmai.ToLower() == "có");
             var SanPhamNoiBat = db.getProductKhuyenMai().ToList();
             ViewBag.SanPhamNoiBat = SanPhamNoiBat;
             return View();
@@ -50,21 +48,20 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
         {
             return View();
         }
-        public ActionResult DMQuantumBeautyWorld()
+        //caterogy
+        public ActionResult DmspHome(int ? id)
         {
-            return View(db.GetAllProducts(1));
-        }
-        public ActionResult DMQuantumDailyWorld()
-        {
-            return View(db.GetAllProducts(2));
-        }
-        public ActionResult DMQuantumHeathyWorld()
-        {
-            return View(db.GetAllProducts(3));
-        }
-        public ActionResult DMTieuDungXanhAori()
-        {
-            return View(db.GetAllProducts(4));
+            if (id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var dmsp = db.GetAllProducts(id);
+            ViewBag.TenDanhMuc = db.DanhMucSanPhams.Where(s => s.MaDanhMucSanPham == id).Single();
+            if(dmsp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dmsp.ToList());
         }
         public ActionResult KhuyenMai()
         {
@@ -72,10 +69,6 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             return View();
         }
         public ActionResult TinTuc()
-        {
-            return View();
-        }
-        public ActionResult DetailsTinTuc(int id)
         {
             return View();
         }

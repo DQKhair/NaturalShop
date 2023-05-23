@@ -5,14 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h5 class="text-uppercase fw-bold">Chi tiết sản phẩm</h5>
 
 <div>
-    <h4>SanPham</h4>
+    <div class="d-flex justify-content-between">
+        <h4>Sản phẩm</h4>
+        <p>@Html.ActionLink("Trở về", "Index")</p>
+    </div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenSanPham)
+            @Html.DisplayName("Tên sản phẩm")
         </dt>
 
         <dd>
@@ -20,15 +23,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
+            @Html.DisplayName("Đơn gián")
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonGia)
+        <dd class="text-danger">@{ int price = Convert.ToInt32(Html.DisplayFor(m => m.DonGia).ToString());}
+            @price.ToString("n0") VNĐ
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MoTaSanPham)
+            @Html.DisplayName("Mô tả sản phẩm")
         </dt>
 
         <dd>
@@ -36,15 +39,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
+            @Html.DisplayName("Hình ảnh")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HinhAnh)
+            <img class="w-50" src="@Html.DisplayFor(model => model.HinhAnh)" alt="anh san pham" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MoTaChiTietSanPham)
+            @Html.DisplayName("Mô tả chi tiết")
         </dt>
 
         <dd>
@@ -52,7 +55,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CachDungSanPham)
+            @Html.DisplayName("Cách sử dụng")
         </dt>
 
         <dd>
@@ -60,31 +63,37 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh2)
+            @Html.DisplayName("Hình ảnh 2")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HinhAnh2)
+            <img class="w-50" src="@Html.DisplayFor(model => model.HinhAnh2)" alt="hinh anh san pham 2" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh3)
+            @Html.DisplayName("Hình ảnh 3")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HinhAnh3)
+            <img class="w-50" src="@Html.DisplayFor(model => model.HinhAnh3)" alt="hinh anh san pham 3" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.khuyenmai)
+            @Html.DisplayName("Khuyến mãi")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.khuyenmai)
+            @{ var khuyenmai = Html.DisplayFor(model => model.khuyenmai).ToString();
+                if (!String.IsNullOrEmpty(khuyenmai))
+                {
+                    <p>Đang khuyến mãi</p>
+                    }
+                    else { <p>Không</p>}
+                }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DanhMucSanPham.TenDanhMucSanPham)
+            @Html.DisplayName("Tên danh mục sản phẩm")
         </dt>
 
         <dd>
@@ -94,6 +103,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSanPham }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaSanPham },new {@class ="btn btn-success my-2" })
+    
 </p>

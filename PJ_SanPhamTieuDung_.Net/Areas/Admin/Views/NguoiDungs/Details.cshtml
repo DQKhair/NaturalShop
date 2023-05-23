@@ -5,71 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="d-flex justify-content-between">
+    <h2>Chi tiết nhân viên</h2>
+    <p>@Html.ActionLink("Trở về", "Index")</p>
+</div>
 
 <div>
-    <h4>NguoiDung</h4>
+    <h4>Người dùng</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenNguoiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenNguoiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailNguoiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailNguoiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SdtNguoiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SdtNguoiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiNguoiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiNguoiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserNames)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserNames)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PassWords)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PassWords)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiTaiKhoan.TenLoaiTaiKhoan)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiTaiKhoan.TenLoaiTaiKhoan)
-        </dd>
-
-    </dl>
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label"> @Html.DisplayName("Tên người dùng")</span>
+            <input type="text" name="TenNguoiDung" value="@Html.DisplayFor(model => model.TenNguoiDung)" class="form-control my-1" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label"> @Html.DisplayName("Email")</span>
+            <input type="text" name="TenNguoiDung" value="@Html.DisplayFor(model => model.EmailNguoiDung)" class="form-control my-1" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label"> @Html.DisplayName("Số điện thoại")</span>
+            <input type="text" name="TenNguoiDung" value="@Html.DisplayFor(model => model.SdtNguoiDung)" class="form-control my-1" readonly />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label"> @Html.DisplayName("Địa chỉ")</span>
+            <input type="text" name="TenNguoiDung" value="@Html.DisplayFor(model => model.DiaChiNguoiDung)" class="form-control my-1" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label"> @Html.DisplayName("Tên tài khoản")</span>
+            <input type="text" name="TenNguoiDung" value="@Html.DisplayFor(model => model.UserNames)" class="form-control my-1" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label"> @Html.DisplayName("Loại tài khoản")</span>
+            <input type="text" name="TenNguoiDung" value="@Html.DisplayFor(model => model.LoaiTaiKhoan.TenLoaiTaiKhoan)" class="form-control my-1" readonly />
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNguoiDung }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNguoiDung },new {@class="btn btn-success my-2" })
+
 </p>

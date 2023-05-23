@@ -5,33 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h5 class="text-uppercase fw-bold">Quản lý hóa đơn</h5>
+<hr />
+<table class="table table-hover">
     <tr>
+        <th>@Html.DisplayName("Mã hóa đơn")</th>
         <th>
-            @Html.DisplayNameFor(model => model.TongSoLuong)
+            @Html.DisplayName("Tổng số lượng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TongTien)
+            @Html.DisplayName("Tổng tiền")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NgayMua)
+            @Html.DisplayName("Ngày mua")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TenKhachHang)
+            @Html.DisplayName("Tên khách hàng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NguoiDung.TenNguoiDung)
+            @Html.DisplayName("Phương thức thanh toán")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThai.TenTrangThai)
+            @Html.DisplayName("Trạng thái đơn hàng")
         </th>
         <th></th>
     </tr>
@@ -39,10 +34,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TongSoLuong)
+            @Html.DisplayFor(modelItem => item.MaHoaDon)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TongTien)
+            @Html.DisplayFor(modelItem => item.TongSoLuong)
+        </td>
+        <td class="text-danger">
+            @{ 
+                int totalMoney = Convert.ToInt32(Html.DisplayFor(modelItem => item.TongTien).ToString());
+            }
+           @totalMoney.ToString("n0") VNĐ
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NgayMua)
@@ -51,18 +52,14 @@
             @Html.DisplayFor(modelItem => item.TenKhachHang)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NguoiDung.TenNguoiDung)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.TenPhuongThuc)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TrangThai.TenTrangThai)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaHoaDon }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaHoaDon }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaHoaDon })
+            @Html.ActionLink("chi tiết", "Details", new { id=item.MaHoaDon },new {@class ="btn btn-outline-success w-100 my-2" })
+            @Html.ActionLink("Xác nhận", "Handle", new { id=item.MaHoaDon },new {@class = "btn btn-success w-100 my-2" })
         </td>
     </tr>
 }

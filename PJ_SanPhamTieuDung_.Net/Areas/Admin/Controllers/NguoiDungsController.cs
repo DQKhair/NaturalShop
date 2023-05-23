@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PJ_SanPhamTieuDung_.Net.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
 {
@@ -17,7 +19,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
         // GET: Admin/NguoiDungs
         public ActionResult Index()
         {
-            var nguoiDungs = db.NguoiDungs.Include(n => n.LoaiTaiKhoan);
+            var nguoiDungs = db.NguoiDungs.Where(s => s.MaLoaiTaiKhoan != 1).Include(n => n.LoaiTaiKhoan);
             return View(nguoiDungs.ToList());
         }
 
@@ -39,7 +41,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
         // GET: Admin/NguoiDungs/Create
         public ActionResult Create()
         {
-            ViewBag.MaLoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan");
+            ViewBag.MaLoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans.Where(s=>s.MaLoaiTaiKhoan == 2), "MaLoaiTaiKhoan", "TenLoaiTaiKhoan");
             return View();
         }
 
@@ -52,6 +54,8 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                nguoiDung.PassWords = GetMD5(nguoiDung.PassWords);
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.NguoiDungs.Add(nguoiDung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -118,6 +122,22 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //create a string MD5
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
         }
 
         protected override void Dispose(bool disposing)

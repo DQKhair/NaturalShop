@@ -28,12 +28,15 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoaDon hoaDon = db.HoaDons.Find(id);
-            if (hoaDon == null)
+            //HoaDon hoaDon = db.HoaDons.Find(id);
+            int idMaHoaDon = Convert.ToInt32(id);
+            var chiTietHoaDon = db.ChiTietHoaDons.Where(s => s.MaHoaDon == idMaHoaDon).ToList();
+            ViewBag.ChiTietHoaDon = chiTietHoaDon;
+            if (chiTietHoaDon == null)
             {
                 return HttpNotFound();
             }
-            return View(hoaDon);
+            return View();
         }
 
         // GET: Admin/HoaDons/Create

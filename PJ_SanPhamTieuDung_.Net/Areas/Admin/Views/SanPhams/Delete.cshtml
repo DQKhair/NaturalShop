@@ -5,101 +5,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h5 class="text-uppercase fw-bold">Xóa sản phẩm</h5>
 
-<h3>Are you sure you want to delete this?</h3>
+<h5 class="text-danger">Bạn có chắc muốn xóa không?</h5>
 <div>
-    <h4>SanPham</h4>
+    <div class="d-flex justify-content-between">
+        <h4>Sản phẩm</h4>
+        <p>@Html.ActionLink("Trở về", "Index")</p>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenSanPham)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DonGia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTaSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTaSanPham)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTaChiTietSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTaChiTietSanPham)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CachDungSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CachDungSanPham)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnh2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh3)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HinhAnh3)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.khuyenmai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.khuyenmai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DanhMucSanPham.TenDanhMucSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Tên sản phẩm")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.TenSanPham)" class="form-control my-2" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Đơn giá")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.DonGia)" class="form-control my-2" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Mô tả sản phẩm")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.MoTaSanPham)" class="form-control my-2" readonly />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Địa chỉ đường dẫn hình ảnh sản phẩm")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.HinhAnh)" class="form-control my-2" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Mô tả chi tiết sản phẩm")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.MoTaChiTietSanPham)" class="form-control my-2" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Cách sử dụng")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.CachDungSanPham)" class="form-control my-2" readonly />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Địa chỉ đường dẫn hình ảnh 2")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.HinhAnh2)" class="form-control my-2" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Địa chỉ đường dẫn hình ảnh 3")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.HinhAnh3)" class="form-control my-2" readonly />
+        </div>
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Khuyến mãi")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.khuyenmai)" class="form-control my-2" readonly />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <span class="form-label">@Html.DisplayName("Danh mục sản phẩm")</span>
+            <input type="text" name="Tên sản phẩm" value="@Html.DisplayFor(model => model.DanhMucSanPham.TenDanhMucSanPham)" class="form-control my-2" readonly />
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xác nhận" class="btn btn-danger my-2" />
+           
         </div>
     }
 </div>

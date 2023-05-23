@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<PJ_SanPhamTieuDung_.Net.Models.GetAllProducts_Result>
+@using PJ_SanPhamTieuDung_.Net.Models
 @{
-    ViewBag.Title = "Quantum Beauty World";
+    ViewBag.Title = "DmspHome";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    SanPhamTieuDungEntities db = new SanPhamTieuDungEntities();
+    var TenDanhMuc = ViewBag.TenDanhMuc as DanhMucSanPham;
 }
 
 <!-- breadcrumb -->
@@ -10,14 +13,14 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item ms-3"><a href="@Url.Action("index","HomeSP")"><i class="fa-solid fa-house me-1"></i>Trang chủ</a></li>
             <li class="breadcrumb-item " aria-current="page">Danh mục sản phẩm</li>
-            <li class="breadcrumb-item active" aria-current="page">Quantum beauty world</li>
+            <li class="breadcrumb-item active" aria-current="page">@TenDanhMuc.TenDanhMucSanPham</li>
         </ol>
     </nav>
 </div>
 <!-- end breadcrumb -->
 
 <div class="container mt-3">
-    <h2 class="text-uppercase" style="text-align: center;">QUANTUM BEAUTY WORLD</h2>
+    <h2 class="text-uppercase" style="text-align: center;">@TenDanhMuc.TenDanhMucSanPham</h2>
     <div class="progress mx-auto" style="height: 2px;width: 30%;">
         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
@@ -31,9 +34,9 @@
                         <img src="@Html.DisplayFor(m=>item.HinhAnh)" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-dark">@Html.DisplayFor(m => item.TenSanPham)</h5>
-                            @{ 
+                            @{
                                 int price = Convert.ToInt32(Html.DisplayFor(m => item.DonGia).ToString());
-                              }
+                            }
                             <p class="card-text text-danger">@price.ToString("n0") VNĐ</p>
                         </div>
                         <div class="card-footer bg-white border-top-0 pb-3"> @Html.ActionLink("Mua sản phẩm", "Details", "HomeSP", new { id = @item.MaSanPham }, new { @class = "btn btn-success mt-2" })</div>
@@ -44,3 +47,4 @@
 
     </div>
 </div>
+

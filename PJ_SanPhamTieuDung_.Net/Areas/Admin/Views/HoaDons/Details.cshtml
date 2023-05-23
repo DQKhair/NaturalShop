@@ -1,75 +1,93 @@
-﻿@model PJ_SanPhamTieuDung_.Net.Models.HoaDon
-
+﻿@using PJ_SanPhamTieuDung_.Net.Models
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var chiTietHoaDon = ViewBag.ChiTietHoaDon as List<ChiTietHoaDon>;
 }
 
-<h2>Details</h2>
+<h5 class="text-uppercase fw-bold">Chi tiết đơn hàng</h5>
 
 <div>
-    <h4>HoaDon</h4>
+    <h4>Hóa đơn</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TongSoLuong)
-        </dt>
+    <table class="table table-hover">
+        <tr>
+            <th>Mã chi tiết</th>
+            <th>Mã hóa đơn</th>
+            <th>Tên sản phẩm</th>
+            <th>Trạng thái</th>
+            <th>Phương thức thanh toán</th>
+        </tr>
+        @foreach (var item in chiTietHoaDon)
+            {
+                 <tr>
+                   <td>@item.MaChiTietHoaDon</td>
+                   <td>@item.HoaDon.MaHoaDon</td>
+                   <td>@item.SanPham.TenSanPham</td>
+                   <td>@item.HoaDon.TrangThai.MaTrangThai</td>
+                   <td>@item.HoaDon.PhuongThucThanhToan.TenPhuongThuc</td>
+                 </tr>
+            }
+    </table>
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TongSoLuong)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TongSoLuong)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TongSoLuong)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TongTien)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TongTien)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TongTien)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TongTien)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayMua)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayMua)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayMua)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NgayMua)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TenKhachHang)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TenKhachHang)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenKhachHang)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TenKhachHang)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NguoiDung.TenNguoiDung)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.NguoiDung.TenNguoiDung)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDung.TenNguoiDung)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NguoiDung.TenNguoiDung)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai.TenTrangThai)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrangThai.TenTrangThai)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai.TenTrangThai)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TrangThai.TenTrangThai)
+            </dd>
 
-    </dl>
+        </dl>*@
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHoaDon }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index")
 </p>

@@ -329,12 +329,9 @@
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Authentication\Signup.cshtml" />
     <Content Include="Views\Cart\CheckOut_Success.cshtml" />
-    <Content Include="Views\HomeSP\DMQuantumBeautyWorld.cshtml" />
-    <Content Include="Views\HomeSP\DMQuantumDailyWorld.cshtml" />
-    <Content Include="Views\HomeSP\DMQuantumHeathyWorld.cshtml" />
-    <Content Include="Views\HomeSP\DMTieuDungXanhAori.cshtml" />
     <Content Include="Views\HomeSP\LienHe.cshtml" />
     <Content Include="Views\HomeSP\TinTuc.cshtml" />
+    <Content Include="Views\HomeSP\DmspHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

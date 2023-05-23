@@ -17,16 +17,16 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoaiTaiKhoan()
         {
-            this.ChucNangs = new HashSet<ChucNang>();
             this.NguoiDungs = new HashSet<NguoiDung>();
+            this.ChucNangs = new HashSet<ChucNang>();
         }
     
         public int MaLoaiTaiKhoan { get; set; }
         public string TenLoaiTaiKhoan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChucNang> ChucNangs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NguoiDung> NguoiDungs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChucNang> ChucNangs { get; set; }
     }
 }

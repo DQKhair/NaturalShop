@@ -2,26 +2,27 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<div class="d-flex justify-content-between">
+    <h5 class="text-uppercase fw-bold">Xem chi tiết danh mục</h5>
+    @Html.ActionLink("Trở về", "Index")
+</div>
 <div>
-    <h4>DanhMucSanPham</h4>
+    <h5>Danh mục sản phẩm</h5>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenDanhMucSanPham)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenDanhMucSanPham)
-        </dd>
-
-    </dl>
+    <div class="row table">
+        <div class="col-sm">
+            <span class="col-form-label">@Html.DisplayName("Mã danh mục sản phẩm")</span>
+            <input type="text" name="MaDanhMuc" class="form-control my-1" value="@Html.DisplayFor(m => m.MaDanhMucSanPham)"  readonly/>
+        </div>
+        <div class="col-sm">
+            <span class="col-form-label">@Html.DisplayName("Tên danh mục sản phẩm")</span>
+            <input type="text" name="TenDanhMuc" class="form-control my-1" value="@Html.DisplayFor(m => m.TenDanhMucSanPham)" readonly />
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDanhMucSanPham }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDanhMucSanPham }, new { @class = "btn btn-success" }) <br />
 </p>

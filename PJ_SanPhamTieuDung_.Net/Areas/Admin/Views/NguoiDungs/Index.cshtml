@@ -5,64 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý người dùng</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm nhân viên", "Create","",  new { @class = "btn btn-success" })
 </p>
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TenNguoiDung)
+            @Html.DisplayName("Tên người dùng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmailNguoiDung)
+            @Html.DisplayName("Số điện thoại")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SdtNguoiDung)
+            @Html.DisplayName("Tên tài khoản")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiaChiNguoiDung)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserNames)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PassWords)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiTaiKhoan.TenLoaiTaiKhoan)
+            @Html.DisplayName("Tên loại tài khoản")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TenNguoiDung)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EmailNguoiDung)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.SdtNguoiDung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChiNguoiDung)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserNames)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PassWords)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.LoaiTaiKhoan.TenLoaiTaiKhoan)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaNguoiDung }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaNguoiDung }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaNguoiDung })
+            @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaNguoiDung }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Sửa", "Edit", new { id = item.MaNguoiDung }, new { @class = "btn btn-outline-success my-1" })
+            @{
+                int maloaitaikhoan = Convert.ToInt32((Html.DisplayFor(m => item.MaLoaiTaiKhoan).ToString()));
+                if (maloaitaikhoan != 3)
+                {
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaNguoiDung }, new { @class = "btn btn-danger" })
+                }
+             }
         </td>
     </tr>
 }

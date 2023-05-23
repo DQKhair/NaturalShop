@@ -16,8 +16,9 @@ namespace PJ_SanPhamTieuDung_.Net.Models
     {
         public int MaChucNang { get; set; }
         public string TenChucNang { get; set; }
-        public string Router { get; set; }
         public Nullable<int> MaLoaiTaiKhoan { get; set; }
+        public string ActionName { get; set; }
+        public string ControllerName { get; set; }
     
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
     }
