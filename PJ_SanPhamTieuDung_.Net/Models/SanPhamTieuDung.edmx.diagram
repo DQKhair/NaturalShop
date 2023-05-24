@@ -6,23 +6,22 @@
     <edmx:Diagrams>
       <Diagram DiagramId="23e3ced36e1c4db59282ed334cc92667" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="SanPhamTieuDungModel.ChiTietHoaDon" Width="1.5" PointX="9.25" PointY="4.375" />
-        <EntityTypeShape EntityType="SanPhamTieuDungModel.HoaDon" Width="1.5" PointX="6.25" PointY="4.125" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.LoaiTaiKhoan" Width="1.5" PointX="0.75" PointY="3.125" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.NguoiDung" Width="1.5" PointX="3.125" PointY="4.25" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.PhuongThucThanhToan" Width="1.5" PointX="4" PointY="8.125" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.SanPham" Width="1.5" PointX="11.75" PointY="4" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.TrangThai" Width="1.5" PointX="8.5" PointY="8.375" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_HD" />
         <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_SP" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_ND" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_PTTT" />
-        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_TT" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="SanPhamTieuDungModel.FK_ND_LTK" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.DanhMucSanPham" Width="1.5" PointX="14.25" PointY="5.25" />
         <AssociationConnector Association="SanPhamTieuDungModel.FK_SP_DMSP" />
         <EntityTypeShape EntityType="SanPhamTieuDungModel.ChucNang" Width="1.5" PointX="3" PointY="0.875" />
         <AssociationConnector Association="SanPhamTieuDungModel.FK_CN_LTK" />
+        <EntityTypeShape EntityType="SanPhamTieuDungModel.HoaDon" Width="1.5" PointX="6.625" PointY="4" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_CTHD_HD" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_ND" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_PTTT" />
+        <AssociationConnector Association="SanPhamTieuDungModel.FK_HD_TT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

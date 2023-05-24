@@ -288,6 +288,7 @@
     <Content Include="Areas\Admin\Views\ChiTietHoaDons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietHoaDons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietHoaDons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\HandleReceipt.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

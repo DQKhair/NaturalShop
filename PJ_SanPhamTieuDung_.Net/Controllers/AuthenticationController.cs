@@ -62,7 +62,7 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                 {
                     nguoidung.PassWords = GetMD5(nguoidung.PassWords);
                     db.Configuration.ValidateOnSaveEnabled = false;
-                    nguoidung.MaLoaiTaiKhoan = 2;
+                    nguoidung.MaLoaiTaiKhoan = 3;
                     db.NguoiDungs.Add(nguoidung);
                     db.SaveChanges();
                     return RedirectToAction("Login");

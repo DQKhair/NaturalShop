@@ -12,20 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HoaDons">
-      <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
-        <MappingFragment StoreEntitySet="HoaDon">
-          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
-          <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
-          <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
-          <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
-          <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
-          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-          <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
-          <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LoaiTaiKhoans">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.LoaiTaiKhoan">
         <MappingFragment StoreEntitySet="LoaiTaiKhoan">
@@ -136,5 +122,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HoaDons">
+      <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="SdtLienLac" ColumnName="SdtLienLac" />
+          <ScalarProperty Name="DiaChiGiaoHang" ColumnName="DiaChiGiaoHang" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+          <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+          <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
+          <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+          <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
+          <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DonHang_XacNhanDon" FunctionName="SanPhamTieuDungModel.Store.DonHang_XacNhanDon" />
   </EntityContainerMapping>
 </Mapping>

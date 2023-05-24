@@ -10,83 +10,36 @@
 <div>
     <h4>Hóa đơn</h4>
     <hr />
-    <table class="table table-hover">
+    <div class="table-responsive">
+         <table class="table table-striped text-center table-responsive-md">
         <tr>
             <th>Mã chi tiết</th>
-            <th>Mã hóa đơn</th>
             <th>Tên sản phẩm</th>
-            <th>Trạng thái</th>
+            <th>Số lượng sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Tên khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ nhận hàng</th>
             <th>Phương thức thanh toán</th>
         </tr>
         @foreach (var item in chiTietHoaDon)
             {
-                 <tr>
-                   <td>@item.MaChiTietHoaDon</td>
-                   <td>@item.HoaDon.MaHoaDon</td>
-                   <td>@item.SanPham.TenSanPham</td>
-                   <td>@item.HoaDon.TrangThai.MaTrangThai</td>
-                   <td>@item.HoaDon.PhuongThucThanhToan.TenPhuongThuc</td>
-                 </tr>
+    <tr>
+        <td>@item.MaChiTietHoaDon</td>
+        <td>@item.SanPham.TenSanPham</td>
+        <td>@item.SoLuongSanPham</td>
+        <td class="text-danger">
+            @{ int price = Convert.ToInt32(item.Gia.ToString());}
+            @price.ToString("n0") VNĐ
+        </td>
+        <td>@item.HoaDon.TenKhachHang</td>
+        <td>@item.HoaDon.SdtLienLac</td>
+        <td>@item.HoaDon.DiaChiGiaoHang</td>
+        <td>@item.HoaDon.PhuongThucThanhToan.TenPhuongThuc</td>
+    </tr>
             }
     </table>
-    @*<dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TongSoLuong)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TongSoLuong)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TongTien)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TongTien)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.NgayMua)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NgayMua)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TenKhachHang)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TenKhachHang)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.NguoiDung.TenNguoiDung)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NguoiDung.TenNguoiDung)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TrangThai.TenTrangThai)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TrangThai.TenTrangThai)
-            </dd>
-
-        </dl>*@
+    </div>
 </div>
 <p>
     @Html.ActionLink("Trở về", "Index")

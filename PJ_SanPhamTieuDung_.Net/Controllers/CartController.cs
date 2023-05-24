@@ -91,6 +91,8 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                 hoaDon.NgayMua = DateTime.Now;
                 hoaDon.MaPhuongThuc = int.Parse(from["MaPhuongThuc"]);
                 hoaDon.MaTrangThai = 1;
+                hoaDon.DiaChiGiaoHang = from["DiaChiGiaoHang"];
+                hoaDon.SdtLienLac = from["SdtKhachHang"];
                 db.HoaDons.Add(hoaDon);
                 foreach (var item in cart.Items)
                 {

@@ -43,6 +43,12 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNguoiDung },new {@class="btn btn-success my-2" })
+    @{
+        int maloaitaikhoan = Convert.ToInt32((Html.DisplayFor(m => m.MaLoaiTaiKhoan).ToString()));
+        if (maloaitaikhoan != 3)
+        {
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNguoiDung }, new { @class = "btn btn-success my-2" })
+        }
+    }
 
 </p>

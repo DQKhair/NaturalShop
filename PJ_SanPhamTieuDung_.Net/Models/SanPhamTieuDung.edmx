@@ -44,6 +44,8 @@
           <Property Name="MaTrangThai" Type="int" />
           <Property Name="MaNguoiDung" Type="int" />
           <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChiGiaoHang" Type="nvarchar" MaxLength="100" />
+          <Property Name="SdtLienLac" Type="varchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -193,6 +195,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DonHang_XacNhanDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mahoadon" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="madmsp" Type="int" Mode="In" />
         </Function>
@@ -246,31 +251,14 @@
       <Schema Namespace="SanPhamTieuDungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SanPhamTieuDungEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHoaDons" EntityType="SanPhamTieuDungModel.ChiTietHoaDon" />
-          <EntitySet Name="HoaDons" EntityType="SanPhamTieuDungModel.HoaDon" />
           <EntitySet Name="LoaiTaiKhoans" EntityType="SanPhamTieuDungModel.LoaiTaiKhoan" />
           <EntitySet Name="NguoiDungs" EntityType="SanPhamTieuDungModel.NguoiDung" />
           <EntitySet Name="PhuongThucThanhToans" EntityType="SanPhamTieuDungModel.PhuongThucThanhToan" />
           <EntitySet Name="SanPhams" EntityType="SanPhamTieuDungModel.SanPham" />
           <EntitySet Name="TrangThais" EntityType="SanPhamTieuDungModel.TrangThai" />
-          <AssociationSet Name="FK_CTHD_HD" Association="SanPhamTieuDungModel.FK_CTHD_HD">
-            <End Role="HoaDon" EntitySet="HoaDons" />
-            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
-          </AssociationSet>
           <AssociationSet Name="FK_CTHD_SP" Association="SanPhamTieuDungModel.FK_CTHD_SP">
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HD_ND" Association="SanPhamTieuDungModel.FK_HD_ND">
-            <End Role="NguoiDung" EntitySet="NguoiDungs" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HD_PTTT" Association="SanPhamTieuDungModel.FK_HD_PTTT">
-            <End Role="PhuongThucThanhToan" EntitySet="PhuongThucThanhToans" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HD_TT" Association="SanPhamTieuDungModel.FK_HD_TT">
-            <End Role="TrangThai" EntitySet="TrangThais" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
           <AssociationSet Name="FK_ND_LTK" Association="SanPhamTieuDungModel.FK_ND_LTK">
             <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
@@ -290,6 +278,26 @@
             <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
             <End Role="ChucNang" EntitySet="ChucNangs" />
           </AssociationSet>
+          <EntitySet Name="HoaDons" EntityType="SanPhamTieuDungModel.HoaDon" />
+          <AssociationSet Name="FK_CTHD_HD" Association="SanPhamTieuDungModel.FK_CTHD_HD">
+            <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HD_ND" Association="SanPhamTieuDungModel.FK_HD_ND">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HD_PTTT" Association="SanPhamTieuDungModel.FK_HD_PTTT">
+            <End Role="PhuongThucThanhToan" EntitySet="PhuongThucThanhToans" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HD_TT" Association="SanPhamTieuDungModel.FK_HD_TT">
+            <End Role="TrangThai" EntitySet="TrangThais" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <FunctionImport Name="DonHang_XacNhanDon" ReturnType="Collection(Decimal)">
+            <Parameter Name="mahoadon" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ChiTietHoaDon">
           <Key>
@@ -299,26 +307,9 @@
           <Property Name="SoLuongSanPham" Type="Int32" />
           <Property Name="MaHoaDon" Type="Int32" />
           <Property Name="MaSanPham" Type="Int32" />
-          <NavigationProperty Name="HoaDon" Relationship="SanPhamTieuDungModel.FK_CTHD_HD" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
           <NavigationProperty Name="SanPham" Relationship="SanPhamTieuDungModel.FK_CTHD_SP" FromRole="ChiTietHoaDon" ToRole="SanPham" />
           <Property Name="Gia" Type="Int32" />
-        </EntityType>
-        <EntityType Name="HoaDon">
-          <Key>
-            <PropertyRef Name="MaHoaDon" />
-          </Key>
-          <Property Name="MaHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TongSoLuong" Type="Int32" />
-          <Property Name="TongTien" Type="Int32" />
-          <Property Name="NgayMua" Type="DateTime" Precision="3" />
-          <Property Name="MaPhuongThuc" Type="Int32" />
-          <Property Name="MaTrangThai" Type="Int32" />
-          <Property Name="MaNguoiDung" Type="Int32" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="SanPhamTieuDungModel.FK_CTHD_HD" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
-          <NavigationProperty Name="NguoiDung" Relationship="SanPhamTieuDungModel.FK_HD_ND" FromRole="HoaDon" ToRole="NguoiDung" />
-          <NavigationProperty Name="PhuongThucThanhToan" Relationship="SanPhamTieuDungModel.FK_HD_PTTT" FromRole="HoaDon" ToRole="PhuongThucThanhToan" />
-          <NavigationProperty Name="TrangThai" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="HoaDon" ToRole="TrangThai" />
-          <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoaDon" Relationship="SanPhamTieuDungModel.FK_CTHD_HD" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -341,8 +332,8 @@
           <Property Name="UserNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PassWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MaLoaiTaiKhoan" Type="Int32" />
-          <NavigationProperty Name="HoaDons" Relationship="SanPhamTieuDungModel.FK_HD_ND" FromRole="NguoiDung" ToRole="HoaDon" />
           <NavigationProperty Name="LoaiTaiKhoan" Relationship="SanPhamTieuDungModel.FK_ND_LTK" FromRole="NguoiDung" ToRole="LoaiTaiKhoan" />
+          <NavigationProperty Name="HoaDons" Relationship="SanPhamTieuDungModel.FK_HD_ND" FromRole="NguoiDung" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="PhuongThucThanhToan">
           <Key>
@@ -380,18 +371,6 @@
           <Property Name="TenTrangThai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HoaDons" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="TrangThai" ToRole="HoaDon" />
         </EntityType>
-        <Association Name="FK_CTHD_HD">
-          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
-          <End Type="SanPhamTieuDungModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HoaDon">
-              <PropertyRef Name="MaHoaDon" />
-            </Principal>
-            <Dependent Role="ChiTietHoaDon">
-              <PropertyRef Name="MaHoaDon" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CTHD_SP">
           <End Type="SanPhamTieuDungModel.SanPham" Role="SanPham" Multiplicity="0..1" />
           <End Type="SanPhamTieuDungModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
@@ -401,42 +380,6 @@
             </Principal>
             <Dependent Role="ChiTietHoaDon">
               <PropertyRef Name="MaSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HD_ND">
-          <End Type="SanPhamTieuDungModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
-          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="MaNguoiDung" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="MaNguoiDung" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HD_PTTT">
-          <End Type="SanPhamTieuDungModel.PhuongThucThanhToan" Role="PhuongThucThanhToan" Multiplicity="0..1" />
-          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhuongThucThanhToan">
-              <PropertyRef Name="MaPhuongThuc" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="MaPhuongThuc" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HD_TT">
-          <End Type="SanPhamTieuDungModel.TrangThai" Role="TrangThai" Multiplicity="0..1" />
-          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TrangThai">
-              <PropertyRef Name="MaTrangThai" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="MaTrangThai" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -521,6 +464,73 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TongSoLuong" Type="Int32" />
+          <Property Name="TongTien" Type="Int32" />
+          <Property Name="NgayMua" Type="DateTime" Precision="3" />
+          <Property Name="MaPhuongThuc" Type="Int32" />
+          <Property Name="MaTrangThai" Type="Int32" />
+          <Property Name="MaNguoiDung" Type="Int32" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiGiaoHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="SanPhamTieuDungModel.FK_CTHD_HD" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="NguoiDung" Relationship="SanPhamTieuDungModel.FK_HD_ND" FromRole="HoaDon" ToRole="NguoiDung" />
+          <NavigationProperty Name="PhuongThucThanhToan" Relationship="SanPhamTieuDungModel.FK_HD_PTTT" FromRole="HoaDon" ToRole="PhuongThucThanhToan" />
+          <NavigationProperty Name="TrangThai" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="HoaDon" ToRole="TrangThai" />
+          <Property Name="SdtLienLac" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CTHD_HD">
+          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
+          <End Type="SanPhamTieuDungModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHoaDon" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HD_ND">
+          <End Type="SanPhamTieuDungModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
+          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HD_PTTT">
+          <End Type="SanPhamTieuDungModel.PhuongThucThanhToan" Role="PhuongThucThanhToan" Multiplicity="0..1" />
+          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhuongThucThanhToan">
+              <PropertyRef Name="MaPhuongThuc" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaPhuongThuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HD_TT">
+          <End Type="SanPhamTieuDungModel.TrangThai" Role="TrangThai" Multiplicity="0..1" />
+          <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrangThai">
+              <PropertyRef Name="MaTrangThai" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaTrangThai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -535,20 +545,6 @@
                 <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
                 <ScalarProperty Name="SoLuongSanPham" ColumnName="SoLuongSanPham" />
                 <ScalarProperty Name="MaChiTietHoaDon" ColumnName="MaChiTietHoaDon" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HoaDons">
-            <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
-              <MappingFragment StoreEntitySet="HoaDon">
-                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
-                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
-                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
-                <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
-                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
-                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-                <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
-                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -662,6 +658,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HoaDons">
+            <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="SdtLienLac" ColumnName="SdtLienLac" />
+                <ScalarProperty Name="DiaChiGiaoHang" ColumnName="DiaChiGiaoHang" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
+                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DonHang_XacNhanDon" FunctionName="SanPhamTieuDungModel.Store.DonHang_XacNhanDon" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

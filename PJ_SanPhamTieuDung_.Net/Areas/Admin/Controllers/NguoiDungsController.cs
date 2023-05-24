@@ -86,14 +86,23 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNguoiDung,TenNguoiDung,EmailNguoiDung,SdtNguoiDung,DiaChiNguoiDung,UserNames,PassWords,MaLoaiTaiKhoan")] NguoiDung nguoiDung)
+        public ActionResult Edit(int MaNguoiDung, string TenNguoiDung, string EmailNguoiDung, string SdtNguoiDung, string DiaChiNguoiDung)
         {
-            if (ModelState.IsValid)
+            var nguoiDung = db.NguoiDungs.Find(MaNguoiDung);
+            //if (ModelState.IsValid)
+            //{
+            if (nguoiDung != null)
             {
-                db.Entry(nguoiDung).State = EntityState.Modified;
+                nguoiDung.TenNguoiDung = TenNguoiDung;
+                nguoiDung.EmailNguoiDung = EmailNguoiDung;
+                nguoiDung.SdtNguoiDung = SdtNguoiDung;
+                nguoiDung.DiaChiNguoiDung = DiaChiNguoiDung;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                //db.Entry(nguoiDung).State = EntityState.Modified;
+                //db.SaveChanges();
+            //}
             ViewBag.MaLoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", nguoiDung.MaLoaiTaiKhoan);
             return View(nguoiDung);
         }

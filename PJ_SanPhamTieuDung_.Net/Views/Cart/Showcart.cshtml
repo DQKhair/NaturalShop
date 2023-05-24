@@ -28,8 +28,8 @@
 <a class="text-decoration-none" href="@Url.Action("Index","HomeSP")">Mua thêm sản phẩm</a>
 @if (Model != null)
 {
-
-    <table class="table">
+    <div class="table-responsive">
+         <table class="table">
         <thead>
             <tr>
                 <th scope="col">@Html.DisplayName("Tên sản phẩm")</th>
@@ -64,6 +64,7 @@
             }
         </tbody>
     </table>
+    </div>
     <div>
         @if (Model.Total_quantity() != 0)
         {
@@ -80,12 +81,12 @@
                 if (Session["LoaiTaiKhoan"] == null)
                 {
                     <label for="TenKH" class="form-label">Tên Khách hàng</label>
-                    <input name="TenKhachHang" type="text" id="TenKH" class="form-control mw-100">
+                    <input name="TenKhachHang" type="text" id="TenKH" class="form-control mw-100" required>
                 }
                 <label for="DiaChiGiaoHang" class="form-label">Địa chỉ giao hàng</label>
-                <input name="DiaChiGiaoHang" type="text" id="DiaChiKH" class="form-control mw-100">
-                <label for="SdtKH" class="form-label">Số điện thoại</label>
-                <input name="SdtKhachHang" type="text" id="sdtKH" class="form-control mw-100">
+                <input name="DiaChiGiaoHang" type="text" id="DiaChiKH" class="form-control mw-100" required>
+                <label for="SdtKhachHang" class="form-label">Số điện thoại</label>
+                <input name="SdtKhachHang" type="text" id="sdtKH" class="form-control mw-100" required>
                 <label for="PTT" class="form-label">Phương thức thanh toán</label> <br />
                 <input checked="checked"
                        id="MaPhuongThuc"

@@ -56,18 +56,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm">
-            <div class="form-group">
-                @Html.LabelFor(model => model.UserNames, "Tên tài khoản", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UserNames, new { htmlAttributes = new { @class = "form-control my-1" } })
-                    @Html.ValidationMessageFor(model => model.UserNames, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="col-sm"></div>
-    </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Lưu" class="btn btn-success my-2" />

@@ -28,6 +28,8 @@ namespace PJ_SanPhamTieuDung_.Net.Models
         public Nullable<int> MaTrangThai { get; set; }
         public Nullable<int> MaNguoiDung { get; set; }
         public string TenKhachHang { get; set; }
+        public string DiaChiGiaoHang { get; set; }
+        public string SdtLienLac { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
