@@ -125,6 +125,7 @@
     <EntitySetMapping Name="HoaDons">
       <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
         <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="NhanVienThucHien" ColumnName="NhanVienThucHien" />
           <ScalarProperty Name="SdtLienLac" ColumnName="SdtLienLac" />
           <ScalarProperty Name="DiaChiGiaoHang" ColumnName="DiaChiGiaoHang" />
           <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />

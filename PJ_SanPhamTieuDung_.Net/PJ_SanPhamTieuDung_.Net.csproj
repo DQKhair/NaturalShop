@@ -129,7 +129,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\ChiTietHoaDonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DanhMucSanPhamsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HoaDonsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NguoiDungsController.cs" />
@@ -214,6 +213,7 @@
     <Content Include="Content\css\slider.css" />
     <Content Include="Content\img\BG_gioithieu.jpg" />
     <Content Include="Content\img\da-thong-bao.png" />
+    <Content Include="Content\img\img_dashboard.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -278,17 +278,11 @@
     <Content Include="Areas\Admin\Views\NguoiDungs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NguoiDungs\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HoaDons\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\HoaDons\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\HoaDons\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\HoaDons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\HoaDons\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietHoaDons\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HoaDons\HandleReceipt.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\PendingList.cshtml" />
+    <Content Include="Areas\Admin\Views\HoaDons\ProcessedList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -312,8 +306,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\HomeSP\Create.cshtml" />
     <Content Include="Views\HomeSP\Delete.cshtml" />
@@ -333,6 +325,8 @@
     <Content Include="Views\HomeSP\LienHe.cshtml" />
     <Content Include="Views\HomeSP\TinTuc.cshtml" />
     <Content Include="Views\HomeSP\DmspHome.cshtml" />
+    <Content Include="Views\HomeSP\HistoryPay.cshtml" />
+    <Content Include="Views\HomeSP\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

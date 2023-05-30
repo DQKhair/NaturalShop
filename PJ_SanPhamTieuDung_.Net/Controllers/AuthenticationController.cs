@@ -41,8 +41,8 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                 }
                 else
                 {
-                    ViewBag.error = "Login failed";
-                    return RedirectToAction("Login");
+                    ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng !");
+                    return View("Login");
                 }
             }
                 return View();

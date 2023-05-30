@@ -99,11 +99,11 @@
                        value="1" /> <span>Thanh toán khác</span>
 
                 <div>
-                    <input type="submit" name="CheckOut" class="btn btn-success" value="Thanh toán" />
                     @if (Session["LoaiTaiKhoan"] == null)
                     {
-                        <a href="@Url.Action("RegisterUser", "LoginUser")" class="btn btn-success my-3">Register</a>
+                        <a href="@Url.Action("RegisterUser", "LoginUser")" class="btn btn-outline-success my-3">Register</a>
                     }
+                    <input type="submit" name="CheckOut" class="btn btn-danger" value="Thanh toán" />
                 </div>
 
             }

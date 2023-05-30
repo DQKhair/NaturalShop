@@ -41,6 +41,7 @@
     <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
     <Property Name="DiaChiGiaoHang" Type="nvarchar" MaxLength="100" />
     <Property Name="SdtLienLac" Type="varchar" MaxLength="11" />
+    <Property Name="NhanVienThucHien" Type="int" />
   </EntityType>
   <EntityType Name="LoaiTaiKhoan">
     <Key>
@@ -192,6 +193,7 @@
   </Association>
   <Function Name="DonHang_XacNhanDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="mahoadon" Type="int" Mode="In" />
+    <Parameter Name="nhanVienThucHien" Type="int" Mode="In" />
   </Function>
   <Function Name="GetAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="madmsp" Type="int" Mode="In" />

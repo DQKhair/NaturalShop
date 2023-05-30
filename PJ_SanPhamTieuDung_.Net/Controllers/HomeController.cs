@@ -12,27 +12,15 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
     {
         public ActionResult Index()
         {
-            var checkloaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
-            if(checkloaitaikhoan.MaLoaiTaiKhoan == 1 || checkloaitaikhoan.MaLoaiTaiKhoan == 2)
+            if(Session["LoaiTaiKhoan"] != null)
             {
-                return View();
+                var checkloaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
+                if (checkloaitaikhoan.MaLoaiTaiKhoan == 1 || checkloaitaikhoan.MaLoaiTaiKhoan == 2)
+                {
+                    return View();
+                }
             }
-
-                return RedirectToAction("Index", "HomeSP");
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return RedirectToAction("Index", "HomeSP");
         }
     }
 }

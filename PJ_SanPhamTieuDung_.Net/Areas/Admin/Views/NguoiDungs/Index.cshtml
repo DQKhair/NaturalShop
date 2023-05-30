@@ -11,26 +11,32 @@
     @Html.ActionLink("Thêm nhân viên", "Create","",  new { @class = "btn btn-success" })
 </p>
 <div class="table-responsive-sm">
-    <table class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayName("Tên người dùng")
-        </th>
-        <th>
-            @Html.DisplayName("Số điện thoại")
-        </th>
-        <th>
-            @Html.DisplayName("Tên tài khoản")
-        </th>
-        <th>
-            @Html.DisplayName("Tên loại tài khoản")
-        </th>
-        <th></th>
-    </tr>
+    <table class="table table-striped text-center">
+        <tr>
+            <th>
+                @Html.DisplayName("Mã người dùng")
+            </th>
+            <th>
+                @Html.DisplayName("Tên người dùng")
+            </th>
+            <th>
+                @Html.DisplayName("Số điện thoại")
+            </th>
+            <th>
+                @Html.DisplayName("Tên tài khoản")
+            </th>
+            <th>
+                @Html.DisplayName("Tên loại tài khoản")
+            </th>
+            <th></th>
+        </tr>
 
 @foreach (var item in Model)
 {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaNguoiDung)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TenNguoiDung)
         </td>
@@ -43,16 +49,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.LoaiTaiKhoan.TenLoaiTaiKhoan)
         </td>
-        <td>
-            @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaNguoiDung }, new { @class = "btn btn-success" })
+        <td style="width:10%">
+            @Html.ActionLink("Xem chi tiết", "Details", new { id = item.MaNguoiDung }, new { @class = "btn btn-success w-100" })
             @{
                 var maloaitaikhoan = int.Parse(Html.DisplayFor(m => item.MaLoaiTaiKhoan).ToString());
                 if (maloaitaikhoan != 3)
                 {
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaNguoiDung }, new { @class = "btn btn-outline-success my-1" })
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaNguoiDung }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaNguoiDung }, new { @class = "btn btn-outline-success my-2 w-100" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaNguoiDung }, new { @class = "btn btn-danger w-100" })
                 }
-             }
+            }
         </td>
     </tr>
 }

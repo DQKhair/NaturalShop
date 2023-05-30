@@ -1,8 +1,6 @@
 ﻿@using PJ_SanPhamTieuDung_.Net.Models;
 @{ 
     SanPhamTieuDungEntities db = new SanPhamTieuDungEntities();
-    var loaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
-    var listChucNang =db.ChucNangs.Where(s=>s.MaLoaiTaiKhoan == loaitaikhoan.MaLoaiTaiKhoan).ToList();
 }
 <!DOCTYPE html>
 <html>
@@ -20,8 +18,12 @@
             color: var(--color-main)
         }
     </style>
-        @if (loaitaikhoan.MaLoaiTaiKhoan == 1 || loaitaikhoan.MaLoaiTaiKhoan == 2)
+        @if(Session["LoaiTaiKhoan"] != null)
         {
+            var loaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
+            var listChucNang = db.ChucNangs.Where(s => s.MaLoaiTaiKhoan == loaitaikhoan.MaLoaiTaiKhoan).ToList();
+            if (loaitaikhoan.MaLoaiTaiKhoan == 1 || loaitaikhoan.MaLoaiTaiKhoan == 2)
+            {
             <!-- header -->
             <header class="container-fluid ">
                 <!-- header_head -->
@@ -41,7 +43,7 @@
 
             <div class="container-fluid row">
                 <div class="col-md-2 my-3">
-                    <h3 class="text-center fw-bold text-uppercase">@loaitaikhoan.LoaiTaiKhoan.TenLoaiTaiKhoan</h3>
+                    <h5 class="text-center fw-bold text-uppercase">@loaitaikhoan.LoaiTaiKhoan.TenLoaiTaiKhoan</h5>
                     <div class="list-group" id="list-tab" role="tablist">
                         @foreach(var item in listChucNang)
                          {
@@ -96,9 +98,13 @@
             <div class="bg-dark text-light text-center"><p class="mb-auto">Copyright 2022 © K02</p></div>
             <!-- end copyright -->
 
+            }else
+                {
+                    <h3 class="text-danger">Bạn không có quyền truy cập</h3>
+                }
+         }
             @Scripts.Render("~/bundles/jquery")
             @Scripts.Render("~/bundles/bootstrap")
             @RenderSection("scripts", required: false)          
-        }
 </body>
 </html>

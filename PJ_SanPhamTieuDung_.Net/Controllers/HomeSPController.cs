@@ -76,6 +76,26 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
         {
             return View();
         }
+        public ActionResult HistoryPay()
+        {
+            if(Session["LoaiTaiKhoan"] != null)
+            {
+                var checktaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
+                var historyReceipt = db.ChiTietHoaDons.Where(s => s.HoaDon.MaNguoiDung == checktaikhoan.MaNguoiDung);
+                return View(historyReceipt.ToList());
+            }
+            return View();
+        }
+        public ActionResult MyProfile()
+        {
+            if(Session["LoaiTaiKhoan"] != null)
+            {
+                var checkTaiKhoan = (NguoiDung)Session["LoaiTaiKhoan"];
+                var myProfile = db.NguoiDungs.Where(m => m.MaNguoiDung == checkTaiKhoan.MaNguoiDung).SingleOrDefault();
+                return View(myProfile);
+            }
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PJ_SanPhamTieuDung_.Net.Models.HoaDon>
+@{
+    ViewBag.Title = "PendingList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="text-uppercase fw-bold">Quản lý hóa đơn</h5>
+<div class="btn-group">
+    <a href="#" class="btn btn-success active" aria-current="page">Quản lý đơn</a>
+    <a href="@Url.Action("PendingList","HoaDons")" class="btn btn-success active">Chờ xử lý</a>
+    <a href="@Url.Action("ProcessedList","HoaDons")" class="btn btn-success">Đã xử lý</a>
+</div>
+<hr />
+<div class="table-responsive">
+    <table class="table table-striped text-center">
+        <tr>
+            <th>@Html.DisplayName("Mã hóa đơn")</th>
+            <th>
+                @Html.DisplayName("Tên khách hàng")
+            </th>
+            <th>
+                @Html.DisplayName("Tổng số lượng")
+            </th>
+            <th>
+                @Html.DisplayName("Tổng tiền")
+            </th>
+            <th>
+                @Html.DisplayName("Ngày mua")
+            </th>
+            <th>
+                @Html.DisplayName("Phương thức thanh toán")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Trạng thái đơn hàng")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHoaDon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKhachHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongSoLuong)
+                </td>
+                <td class="text-danger">
+                    @{
+                        int totalMoney = Convert.ToInt32(Html.DisplayFor(modelItem => item.TongTien).ToString());
+                    }
+                    @totalMoney.ToString("n0") VNĐ
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayMua)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.TenPhuongThuc)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.TrangThai.TenTrangThai)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-outline-success w-100 my-2" })
+                    @Html.ActionLink("Xác nhận", "HandleReceipt", new { id = item.MaHoaDon }, new { @class = "btn btn-success w-100 my-2" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

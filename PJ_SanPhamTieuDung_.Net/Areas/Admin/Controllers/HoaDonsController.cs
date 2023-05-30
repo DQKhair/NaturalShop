@@ -37,6 +37,16 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             }
             return View();
         }
+        public ActionResult PendingList()
+        {
+            var hoaDons = db.HoaDons.Where(s => s.MaTrangThai == 1).Include(h => h.NguoiDung).Include(h => h.PhuongThucThanhToan).Include(h => h.TrangThai).OrderByDescending(h => h.MaHoaDon);
+            return View(hoaDons.ToList());
+        }
+        public ActionResult ProcessedList()
+        {
+            var hoaDons = db.HoaDons.Where(s=>s.MaTrangThai == 2).Include(h => h.NguoiDung).Include(h => h.PhuongThucThanhToan).Include(h => h.TrangThai).OrderByDescending(h => h.MaHoaDon);
+            return View(hoaDons.ToList());
+        }
 
         //// GET: Admin/HoaDons/Edit/5
         public ActionResult HandleReceipt(int? id)
@@ -57,8 +67,13 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult HandleReceipt(int id)
         {
-            db.DonHang_XacNhanDon(id);
+            if(Session["LoaiTaiKhoan"] != null)
+            {
+                var maNhanVienThuchien = (NguoiDung)Session["LoaiTaiKhoan"];
+                db.DonHang_XacNhanDon(id,maNhanVienThuchien.MaNguoiDung);
             return RedirectToAction("Index","HoaDons");
+            }
+            return View("HandleReceipt");
         }
 
         protected override void Dispose(bool disposing)

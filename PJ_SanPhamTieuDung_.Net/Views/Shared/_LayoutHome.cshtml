@@ -20,6 +20,19 @@
         header h2 {
             color: var(--color-main)
         }
+        #nav_moblie_logout,
+        #nav_moblie_login {
+            display: none;
+        }
+        @@media(max-width:740px) {
+            .mobile_header div:nth-child(2), .mobile_header div:nth-child(3) {
+            display: none;
+            }
+            #nav_moblie_logout,
+            #nav_moblie_login {
+                display: block;
+            }
+        }
     </style>
     <!-- header -->
     <header class="container-fluid ">
@@ -36,8 +49,18 @@
                 @if (Session["MaNguoiDung"] != null)
                 {
                     var tennguoidung = (NguoiDung)Session["LoaiTaiKhoan"];
-                    <a class="text-success text-decoration-none me-2" href="#">Xin chào @tennguoidung.TenNguoiDung</a>
-                    <a class="btn btn-outline-success" href="@Url.Action("Logout", "Authentication")">Đăng xuất</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Xin chào @tennguoidung.TenNguoiDung
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="@Url.Action("MyProfile","HomeSP")">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("HistoryPay","HomeSP")">Lịch sự mua</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Logout", "Authentication")">Đăng xuất</a></li>
+                        </ul>
+                    </li>
                 }
                 else
                 {
@@ -64,55 +87,65 @@
                         @if (Session["MaNguoiDung"] != null)
                         {
                             var tennguoidung = (NguoiDung)Session["LoaiTaiKhoan"];
-                            <a id="nav_moblie_login" class="nav-link active text-light " aria-current="page" href="#">Xin chào @tennguoidung.TenNguoiDung</a>
-                            <a id="nav_moblie_logout" class="nav-link active text-light " aria-current="page" href="@Url.Action("Logout", "Authentication")">Đăng Xuất</a>
-                        }
-                        else
-                        {
-                            <a id="nav_moblie_login" class="nav-link active text-light " aria-current="page" href="@Url.Action("Login", "Authentication")">Đăng nhập</a>
-                        }
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="@Url.Action("GioiThieu", "HomeSP")">Giới thiệu</a>
-                    </li>
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Danh mục sản phẩm
-                        </a>
-                        <ul class="dropdown-menu">
-                            @foreach (var item in listDanhMucSanPham)
-                            {
-                                <li><a class="dropdown-item text-uppercase" href="@Url.Action("DmspHome","HomeSP", new {id = item.MaDanhMucSanPham })">@item.TenDanhMucSanPham</a></li>
-                            }
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("KhuyenMai", "HomeSP")">Khuyến mãi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("TinTuc", "HomeSP")">Tin Tức</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("LienHe", "HomeSP")">Liên hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <div>
-                            <a class="nav-link text-light" href="@Url.Action("ShowCart", "Cart")">
-                                Giỏ hàng <i class="fa-solid fa-basket-shopping"></i>@if (cart_total_Quantity == null)
-                                {
 
-                                    int cart_total = 0;
-                                    <span class="text-bg-danger rounded px-1">@cart_total</span>
-                                }
-                                else
-                                {
-                                    int cart_total = Convert.ToInt32(cart_total_Quantity.Total_quantity().ToString());
-                                    <span class="text-bg-danger rounded px-1">@cart_total</span>
-                                }
+                        <li class="nav-item dropdown">
+                            <a id="nav_moblie_login" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Xin chào @tennguoidung.TenNguoiDung
                             </a>
-                        </div>
-                    </li>
-                </ul>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="@Url.Action("MyProfile","HomeSP")">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("HistoryPay","HomeSP")">Lịch sự mua</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Authentication")">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <a id="nav_moblie_login" class="nav-link active text-light " aria-current="page" href="@Url.Action("Login", "Authentication")">Đăng nhập</a>
+                    }
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="@Url.Action("GioiThieu", "HomeSP")">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Danh mục sản phẩm
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach (var item in listDanhMucSanPham)
+                                {
+                                    <li><a class="dropdown-item text-uppercase" href="@Url.Action("DmspHome","HomeSP", new {id = item.MaDanhMucSanPham })">@item.TenDanhMucSanPham</a></li>
+                                }
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="@Url.Action("KhuyenMai", "HomeSP")">Khuyến mãi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="@Url.Action("TinTuc", "HomeSP")">Tin Tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="@Url.Action("LienHe", "HomeSP")">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <div>
+                                <a class="nav-link text-light" href="@Url.Action("ShowCart", "Cart")">
+                                    Giỏ hàng <i class="fa-solid fa-basket-shopping"></i>@if (cart_total_Quantity == null)
+                                    {
+
+                                        int cart_total = 0;
+                                        <span class="text-bg-danger rounded-circle px-1 text-center" style="font-size:10px;position:relative;left:-10px;bottom:-7px">@cart_total</span>
+                                    }
+                                    else
+                                    {
+                                        int cart_total = Convert.ToInt32(cart_total_Quantity.Total_quantity().ToString());
+                                        <span class="text-bg-danger rounded px-1">@cart_total</span>
+                                    }
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
             </div>
         </div>
     </nav>

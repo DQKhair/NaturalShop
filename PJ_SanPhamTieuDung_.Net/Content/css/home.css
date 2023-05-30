@@ -1,14 +1,3 @@
 .card{
     height: 100%;
 }
-#nav_moblie_login {
-    display: none;
-}
-@media (max-width:740px) {
-    .mobile_header div:nth-child(2), .mobile_header div:nth-child(3) {
-        display: none;
-    }
-    #nav_moblie_login{
-        display:block;
-    }
-}

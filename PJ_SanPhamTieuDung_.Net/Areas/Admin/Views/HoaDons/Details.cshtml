@@ -14,6 +14,7 @@
          <table class="table table-striped text-center table-responsive-md">
         <tr>
             <th>Mã chi tiết</th>
+            <th>Mã nhân viên thực hiện</th>
             <th>Tên sản phẩm</th>
             <th>Số lượng sản phẩm</th>
             <th>Giá sản phẩm</th>
@@ -24,19 +25,20 @@
         </tr>
         @foreach (var item in chiTietHoaDon)
             {
-    <tr>
-        <td>@item.MaChiTietHoaDon</td>
-        <td>@item.SanPham.TenSanPham</td>
-        <td>@item.SoLuongSanPham</td>
-        <td class="text-danger">
-            @{ int price = Convert.ToInt32(item.Gia.ToString());}
-            @price.ToString("n0") VNĐ
-        </td>
-        <td>@item.HoaDon.TenKhachHang</td>
-        <td>@item.HoaDon.SdtLienLac</td>
-        <td>@item.HoaDon.DiaChiGiaoHang</td>
-        <td>@item.HoaDon.PhuongThucThanhToan.TenPhuongThuc</td>
-    </tr>
+         <tr>
+             <td>@item.MaChiTietHoaDon</td>
+             <td>@item.HoaDon.NhanVienThucHien</td>
+             <td>@item.SanPham.TenSanPham</td>
+             <td>@item.SoLuongSanPham</td>
+             <td class="text-danger">
+                 @{ int price = Convert.ToInt32(item.Gia.ToString());}
+                 @price.ToString("n0") VNĐ
+             </td>
+             <td>@item.HoaDon.TenKhachHang</td>
+             <td>@item.HoaDon.SdtLienLac</td>
+             <td>@item.HoaDon.DiaChiGiaoHang</td>
+             <td>@item.HoaDon.PhuongThucThanhToan.TenPhuongThuc</td>
+         </tr>
             }
     </table>
     </div>

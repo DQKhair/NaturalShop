@@ -48,6 +48,7 @@
     </AssociationSet>
     <FunctionImport Name="DonHang_XacNhanDon" ReturnType="Collection(Decimal)">
       <Parameter Name="mahoadon" Mode="In" Type="Int32" />
+      <Parameter Name="nhanVienThucHien" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="ChiTietHoaDon">
@@ -233,6 +234,7 @@
     <NavigationProperty Name="PhuongThucThanhToan" Relationship="SanPhamTieuDungModel.FK_HD_PTTT" FromRole="HoaDon" ToRole="PhuongThucThanhToan" />
     <NavigationProperty Name="TrangThai" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="HoaDon" ToRole="TrangThai" />
     <Property Name="SdtLienLac" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="NhanVienThucHien" Type="Int32" />
   </EntityType>
   <Association Name="FK_CTHD_HD">
     <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />

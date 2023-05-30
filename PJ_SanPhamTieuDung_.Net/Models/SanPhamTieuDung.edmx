@@ -46,6 +46,7 @@
           <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
           <Property Name="DiaChiGiaoHang" Type="nvarchar" MaxLength="100" />
           <Property Name="SdtLienLac" Type="varchar" MaxLength="11" />
+          <Property Name="NhanVienThucHien" Type="int" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -197,6 +198,7 @@
         </Association>
         <Function Name="DonHang_XacNhanDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="mahoadon" Type="int" Mode="In" />
+          <Parameter Name="nhanVienThucHien" Type="int" Mode="In" />
         </Function>
         <Function Name="GetAllProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="madmsp" Type="int" Mode="In" />
@@ -297,6 +299,7 @@
           </AssociationSet>
           <FunctionImport Name="DonHang_XacNhanDon" ReturnType="Collection(Decimal)">
             <Parameter Name="mahoadon" Mode="In" Type="Int32" />
+            <Parameter Name="nhanVienThucHien" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="ChiTietHoaDon">
@@ -482,6 +485,7 @@
           <NavigationProperty Name="PhuongThucThanhToan" Relationship="SanPhamTieuDungModel.FK_HD_PTTT" FromRole="HoaDon" ToRole="PhuongThucThanhToan" />
           <NavigationProperty Name="TrangThai" Relationship="SanPhamTieuDungModel.FK_HD_TT" FromRole="HoaDon" ToRole="TrangThai" />
           <Property Name="SdtLienLac" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="NhanVienThucHien" Type="Int32" />
         </EntityType>
         <Association Name="FK_CTHD_HD">
           <End Type="SanPhamTieuDungModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
@@ -661,6 +665,7 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="SanPhamTieuDungModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="NhanVienThucHien" ColumnName="NhanVienThucHien" />
                 <ScalarProperty Name="SdtLienLac" ColumnName="SdtLienLac" />
                 <ScalarProperty Name="DiaChiGiaoHang" ColumnName="DiaChiGiaoHang" />
                 <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />

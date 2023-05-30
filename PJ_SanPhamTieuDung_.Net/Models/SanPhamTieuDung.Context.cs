@@ -51,13 +51,17 @@ namespace PJ_SanPhamTieuDung_.Net.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProductKhuyenMai_Result>("getProductKhuyenMai");
         }
     
-        public virtual ObjectResult<Nullable<decimal>> DonHang_XacNhanDon(Nullable<int> mahoadon)
+        public virtual ObjectResult<Nullable<decimal>> DonHang_XacNhanDon(Nullable<int> mahoadon, Nullable<int> nhanVienThucHien)
         {
             var mahoadonParameter = mahoadon.HasValue ?
                 new ObjectParameter("mahoadon", mahoadon) :
                 new ObjectParameter("mahoadon", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("DonHang_XacNhanDon", mahoadonParameter);
+            var nhanVienThucHienParameter = nhanVienThucHien.HasValue ?
+                new ObjectParameter("nhanVienThucHien", nhanVienThucHien) :
+                new ObjectParameter("nhanVienThucHien", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("DonHang_XacNhanDon", mahoadonParameter, nhanVienThucHienParameter);
         }
     }
 }

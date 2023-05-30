@@ -20,7 +20,7 @@ namespace PJ_SanPhamTieuDung_.Net
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/bootstrap.js",
                       "~/Scripts/js/slider.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

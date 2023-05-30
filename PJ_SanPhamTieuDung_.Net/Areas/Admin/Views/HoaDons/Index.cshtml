@@ -6,6 +6,11 @@
 }
 
 <h5 class="text-uppercase fw-bold">Quản lý hóa đơn</h5>
+<div class="btn-group">
+    <a href="#" class="btn btn-success active" aria-current="page">Quản lý đơn</a>
+    <a href="@Url.Action("PendingList","HoaDons")" class="btn btn-success">Chờ xử lý</a>
+    <a href="@Url.Action("ProcessedList","HoaDons")" class="btn btn-success">Đã xử lý</a>
+</div>
 <hr />
 <div class="table-responsive">
     <table class="table table-striped text-center">
@@ -61,7 +66,11 @@
     </td>
     <td>
         @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-outline-success w-100 my-2" })
-        @Html.ActionLink("Xác nhận", "HandleReceipt", new { id = item.MaHoaDon }, new { @class = "btn btn-success w-100 my-2" })
+        @{ int trangthaidon = Convert.ToInt32(Html.DisplayFor(modelItem => item.TrangThai.MaTrangThai).ToString());}
+        @if(trangthaidon == 1)
+         {
+            @Html.ActionLink("Xác nhận", "HandleReceipt", new { id = item.MaHoaDon }, new { @class = "btn btn-success w-100 my-2" })
+         }
     </td>
 </tr>
 }
