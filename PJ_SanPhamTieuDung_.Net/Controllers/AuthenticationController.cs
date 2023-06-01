@@ -5,9 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using PJ_SanPhamTieuDung_.Net.Models;
-using System.Security.Cryptography;
-using System.Text;
-
+using PJ_SanPhamTieuDung_.Net.Encrypt;
 namespace PJ_SanPhamTieuDung_.Net.Controllers
 {
     public class AuthenticationController : Controller
@@ -24,7 +22,7 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
         {
             if (ModelState.IsValid)
             {
-                var f_pasword = GetMD5(password);
+                var f_pasword = EncryptPassword.GetMD5(password);
                 var data = db.NguoiDungs.Where(s => s.UserNames.Equals(username) && s.PassWords.Equals(f_pasword)).ToList();
                 if (data.Count() > 0)
                 {
@@ -60,7 +58,7 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                 var check = db.NguoiDungs.FirstOrDefault(s => s.UserNames == nguoidung.UserNames);
                 if (check == null)
                 {
-                    nguoidung.PassWords = GetMD5(nguoidung.PassWords);
+                    nguoidung.PassWords =  EncryptPassword.GetMD5(nguoidung.PassWords);
                     db.Configuration.ValidateOnSaveEnabled = false;
                     nguoidung.MaLoaiTaiKhoan = 3;
                     db.NguoiDungs.Add(nguoidung);
@@ -74,21 +72,6 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
         {
             Session.Clear();//remove session
             return RedirectToAction("index","HomeSP");
-        }
-        //create a string MD5
-        public static string GetMD5(string str)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = Encoding.UTF8.GetBytes(str);
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byte2String = null;
-
-            for (int i = 0; i < targetData.Length; i++)
-            {
-                byte2String += targetData[i].ToString("x2");
-
-            }
-            return byte2String;
         }
     }
 }

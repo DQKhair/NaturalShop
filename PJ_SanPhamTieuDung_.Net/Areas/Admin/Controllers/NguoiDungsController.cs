@@ -7,9 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PJ_SanPhamTieuDung_.Net.Models;
-using System.Security.Cryptography;
-using System.Text;
-
+using PJ_SanPhamTieuDung_.Net.Encrypt;
 namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
 {
     public class NguoiDungsController : Controller
@@ -54,13 +52,12 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                nguoiDung.PassWords = GetMD5(nguoiDung.PassWords);
+                nguoiDung.PassWords = EncryptPassword.GetMD5(nguoiDung.PassWords);
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.NguoiDungs.Add(nguoiDung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.MaLoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", nguoiDung.MaLoaiTaiKhoan);
             return View(nguoiDung);
         }
@@ -132,23 +129,6 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        //create a string MD5
-        public static string GetMD5(string str)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = Encoding.UTF8.GetBytes(str);
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byte2String = null;
-
-            for (int i = 0; i < targetData.Length; i++)
-            {
-                byte2String += targetData[i].ToString("x2");
-
-            }
-            return byte2String;
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

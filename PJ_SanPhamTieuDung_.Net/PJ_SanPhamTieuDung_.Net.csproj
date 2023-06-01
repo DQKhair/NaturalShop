@@ -138,6 +138,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeSPController.cs" />
+    <Compile Include="Encrypt\EncryptPassword.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -330,6 +331,7 @@
     <Content Include="Views\HomeSP\HistoryPay.cshtml" />
     <Content Include="Views\HomeSP\MyProfile.cshtml" />
     <Content Include="Views\Home\ErrorPage.cshtml" />
+    <Content Include="Views\HomeSP\ChangeMyPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
