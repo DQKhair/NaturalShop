@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DanhMucSanPhamsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HoaDonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
@@ -283,6 +284,7 @@
     <Content Include="Areas\Admin\Views\HoaDons\HandleReceipt.cshtml" />
     <Content Include="Areas\Admin\Views\HoaDons\PendingList.cshtml" />
     <Content Include="Areas\Admin\Views\HoaDons\ProcessedList.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\MyProfile.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -327,6 +329,7 @@
     <Content Include="Views\HomeSP\DmspHome.cshtml" />
     <Content Include="Views\HomeSP\HistoryPay.cshtml" />
     <Content Include="Views\HomeSP\MyProfile.cshtml" />
+    <Content Include="Views\Home\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -45,10 +45,12 @@
                 <div class="col-md-2 my-3">
                     <h5 class="text-center fw-bold text-uppercase">@loaitaikhoan.LoaiTaiKhoan.TenLoaiTaiKhoan</h5>
                     <div class="list-group" id="list-tab" role="tablist">
-                        @foreach(var item in listChucNang)
-                         {
+                        @foreach (var item in listChucNang)
+                        {
                             <a class="list-group-item list-group-item-action" href="~/admin/@item.ControllerName/@item.ActionName">@item.TenChucNang</a>
-                         }
+                        }
+                    <hr />
+                        <a class="list-group-item list-group-item-action" href="@Url.Action("MyProfile","HomeAdmin",new {@area = "Admin" })">Thông tin cá nhân</a>
                         <a class="list-group-item list-group-item-action" href="~/Authentication/Logout">Đăng xuất</a>
                     </div>
                 </div>

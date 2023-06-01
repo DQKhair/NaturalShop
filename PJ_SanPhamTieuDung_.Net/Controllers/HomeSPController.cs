@@ -96,6 +96,27 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             }
             return View();
         }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult MyProfile(string myProfileTen, string myProfileEmail, string myProfileSDT,string myProfileDiaChi)
+        {
+            if (Session["LoaiTaiKhoan"] != null)
+            {
+                var checkTaiKhoan = (NguoiDung)Session["LoaiTaiKhoan"];
+                int maNguoiDung = checkTaiKhoan.MaNguoiDung;
+                var nguoiDung = db.NguoiDungs.Where(m => m.MaNguoiDung == maNguoiDung).SingleOrDefault();
+                if(nguoiDung != null)
+                {
+                    nguoiDung.TenNguoiDung = myProfileTen;
+                    nguoiDung.EmailNguoiDung = myProfileEmail;
+                    nguoiDung.SdtNguoiDung = myProfileSDT;
+                    nguoiDung.DiaChiNguoiDung = myProfileDiaChi;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("MyProfile","HomeSP");
+            }
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

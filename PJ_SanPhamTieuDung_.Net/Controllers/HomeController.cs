@@ -22,5 +22,9 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
             }
             return RedirectToAction("Index", "HomeSP");
         }
+        public ActionResult ErrorPage()
+        {
+            return View();
+        }
     }
 }
