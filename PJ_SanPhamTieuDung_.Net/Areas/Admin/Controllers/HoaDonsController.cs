@@ -71,7 +71,8 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             {
                 var maNhanVienThuchien = (NguoiDung)Session["LoaiTaiKhoan"];
                 db.DonHang_XacNhanDon(id,maNhanVienThuchien.MaNguoiDung);
-            return RedirectToAction("Index","HoaDons");
+                TempData["SuccessMessage"] = "Xác nhận hóa đơn thành công";
+                return RedirectToAction("Index","HoaDons");
             }
             return View("HandleReceipt");
         }

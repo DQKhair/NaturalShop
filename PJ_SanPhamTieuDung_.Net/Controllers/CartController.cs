@@ -105,6 +105,7 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                 }
                 db.SaveChanges();
                 cart.ClearCart();
+                TempData["SuccessMessage"] = "Đặt hàng thành công";
                 return RedirectToAction("CheckOut_Success", "Cart");
             }
             catch

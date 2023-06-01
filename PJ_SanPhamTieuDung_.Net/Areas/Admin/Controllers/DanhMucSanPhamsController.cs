@@ -52,9 +52,10 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             {
                 db.DanhMucSanPhams.Add(danhMucSanPham);
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Thêm danh mục thành công";
                 return RedirectToAction("Index");
             }
-
+            TempData["SuccessMessage"] = "Lỗi thêm danh mục";
             return View(danhMucSanPham);
         }
 
@@ -84,8 +85,10 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             {
                 db.Entry(danhMucSanPham).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Chỉnh sửa danh mục thành công";
                 return RedirectToAction("Index");
             }
+            TempData["SuccessMessage"] = "Lỗi chỉnh sửa danh mục";
             return View(danhMucSanPham);
         }
 
@@ -112,6 +115,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             DanhMucSanPham danhMucSanPham = db.DanhMucSanPhams.Find(id);
             db.DanhMucSanPhams.Remove(danhMucSanPham);
             db.SaveChanges();
+            TempData["SuccessMessage"] = "Xóa danh mục thành công";
             return RedirectToAction("Index");
         }
 

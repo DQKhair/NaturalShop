@@ -3,8 +3,22 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var successMessage = TempData["SuccessMessage"] as string;
 }
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div id="notice" class="position-fixed" role="alert" style="z-index:1000; bottom:5%; right:2%; width:32%; background-color: rgba(36, 200, 104, 0.8); border-radius: 2.5rem;">
+        <div class="d-flex justify-content-around" style="height: 90px; position: relative;">
 
+            <i class="fas fa-check position-absolute top-50 translate-middle-y p-4 text-center"
+               style="background-color: rgba(36, 200, 104, 1); border-radius:50%; color:white; left:10%;"></i>
+
+            <div class="position-absolute top-50 translate-middle-y" style="right:25%; color:white;">
+                <h5>@successMessage</h5>
+            </div>
+
+        </div>
+    </div>}
 <h5 class="text-uppercase fw-bold">Quản lý hóa đơn</h5>
 <div class="btn-group">
     <a href="#" class="btn btn-success active" aria-current="page">Quản lý đơn</a>
@@ -14,66 +28,78 @@
 <hr />
 <div class="table-responsive">
     <table class="table table-striped text-center">
-    <tr>
-        <th>@Html.DisplayName("Mã hóa đơn")</th>
-        <th>
-            @Html.DisplayName("Tên khách hàng")
-        </th>
-        <th>
-            @Html.DisplayName("Tổng số lượng")
-        </th>
-        <th>
-            @Html.DisplayName("Tổng tiền")
-        </th>
-        <th>
-            @Html.DisplayName("Ngày mua")
-        </th>
-        <th>
-            @Html.DisplayName("Phương thức thanh toán")
-        </th>
-        <th class="text-center">
-            @Html.DisplayName("Trạng thái đơn hàng")
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>@Html.DisplayName("Mã hóa đơn")</th>
+            <th>
+                @Html.DisplayName("Tên khách hàng")
+            </th>
+            <th>
+                @Html.DisplayName("Tổng số lượng")
+            </th>
+            <th>
+                @Html.DisplayName("Tổng tiền")
+            </th>
+            <th>
+                @Html.DisplayName("Ngày mua")
+            </th>
+            <th>
+                @Html.DisplayName("Phương thức thanh toán")
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Trạng thái đơn hàng")
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaHoaDon)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TenKhachHang)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TongSoLuong)
-    </td>
-    <td class="text-danger">
-        @{
-            int totalMoney = Convert.ToInt32(Html.DisplayFor(modelItem => item.TongTien).ToString());
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHoaDon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKhachHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongSoLuong)
+                </td>
+                <td class="text-danger">
+                    @{
+                        int totalMoney = Convert.ToInt32(Html.DisplayFor(modelItem => item.TongTien).ToString());
+                    }
+                    @totalMoney.ToString("n0") VNĐ
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayMua)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.TenPhuongThuc)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.TrangThai.TenTrangThai)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-outline-success w-100 my-2" })
+                    @{ int trangthaidon = Convert.ToInt32(Html.DisplayFor(modelItem => item.TrangThai.MaTrangThai).ToString());}
+                    @if (trangthaidon == 1)
+                    {
+                        @Html.ActionLink("Xác nhận", "HandleReceipt", new { id = item.MaHoaDon }, new { @class = "btn btn-success w-100 my-2" })
+                    }
+                </td>
+            </tr>
         }
-        @totalMoney.ToString("n0") VNĐ
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NgayMua)
-    </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.TenPhuongThuc)
-    </td>
-    <td class="text-center">
-        @Html.DisplayFor(modelItem => item.TrangThai.TenTrangThai)
-    </td>
-    <td>
-        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHoaDon }, new { @class = "btn btn-outline-success w-100 my-2" })
-        @{ int trangthaidon = Convert.ToInt32(Html.DisplayFor(modelItem => item.TrangThai.MaTrangThai).ToString());}
-        @if(trangthaidon == 1)
-         {
-            @Html.ActionLink("Xác nhận", "HandleReceipt", new { id = item.MaHoaDon }, new { @class = "btn btn-success w-100 my-2" })
-         }
-    </td>
-</tr>
-}
-
-</table>
+    </table>
 </div>
+<script>
+$(document).ready(function () {
+
+        if ($("#notice").is(':visible')) {
+            $("#notice").css({ "position": "fixed", "bottom": "5%", "right": "2%" })
+
+            $("#notice").fadeIn(2500, function () {
+                $("#notice").fadeOut(3000)
+            });
+        }
+    });</script>

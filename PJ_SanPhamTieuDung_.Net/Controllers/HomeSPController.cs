@@ -157,7 +157,7 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                     ModelState.AddModelError("", "Mật khẩu cũ không đúng");
                     return View("ChangeMyPassword");
                 }    
-                return RedirectToAction("MyProfile", "HomeSP");
+                return RedirectToAction("MyProfile", "HomeAdmin");
             }
             return View();
         }

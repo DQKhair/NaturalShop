@@ -3,11 +3,27 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var successMessage = TempData["SuccessMessage"] as string;
 }
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div id="notice" class="position-fixed" role="alert" style="z-index:1000; bottom:5%; right:2%; width:32%; background-color: rgba(36, 200, 104, 0.8); border-radius: 2.5rem;">
+        <div class="d-flex justify-content-around" style="height: 90px; position: relative;">
+
+            <i class="fas fa-check position-absolute top-50 translate-middle-y p-4 text-center"
+               style="background-color: rgba(36, 200, 104, 1); border-radius:50%; color:white; left:10%;"></i>
+
+            <div class="position-absolute top-50 translate-middle-y" style="right:25%; color:white;">
+                <h5>@successMessage</h5>
+            </div>
+
+        </div>
+    </div>}
 <style>
-    #img_sp{
-        width:25%;
+    #img_sp {
+        width: 25%;
     }
+
     @@media only screen and (max-width: 740px) {
         #img_sp {
             width: 100%;
@@ -18,7 +34,7 @@
 <h5 class="text-uppercase fw-bold">Quản lý sản phẩm</h5>
 
 <p>
-    @Html.ActionLink("Thêm sản phẩm", "Create","",htmlAttributes: new {@class="btn btn-success"})
+    @Html.ActionLink("Thêm sản phẩm", "Create", "", htmlAttributes: new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -37,34 +53,46 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSanPham)
-        </td>
-        <td class="text-danger">
-            @{ int price = Convert.ToInt32(Html.DisplayFor(modelItem => item.DonGia).ToString());}
-            @price.ToString("n0") VNĐ
-        </td>
-        <td>
-            <img id="img_sp" src="@Html.DisplayFor(modelItem => item.HinhAnh)" alt="hinh anh san pham" />
-        </td>
-        <td>
-            @{ 
-                var khuyenmai = Html.DisplayFor(modelItem => item.khuyenmai).ToString();
-                if (!String.IsNullOrEmpty(khuyenmai))
-                {
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td class="text-danger">
+                @{ int price = Convert.ToInt32(Html.DisplayFor(modelItem => item.DonGia).ToString());}
+                @price.ToString("n0") VNĐ
+            </td>
+            <td>
+                <img id="img_sp" src="@Html.DisplayFor(modelItem => item.HinhAnh)" alt="hinh anh san pham" />
+            </td>
+            <td>
+                @{
+                    var khuyenmai = Html.DisplayFor(modelItem => item.khuyenmai).ToString();
+                    if (!String.IsNullOrEmpty(khuyenmai))
+                    {
                         <p>Đang khuyến mãi</p>
+                    }
+                    else
+                    {<p>Không</p>}
                 }
-                else
-                {<p>Không</p>}
-            }
-        </td>
-        <td style="width:10%">
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.MaSanPham },new {@class="btn btn-outline-success w-100" })
-            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.MaSanPham },new {@class = "btn btn-success my-2 w-100"})
-            @Html.ActionLink("Xóa", "Delete", new { id=item.MaSanPham },new {@class="btn btn-danger w-100" })
-        </td>
-    </tr>
-}
+            </td>
+            <td style="width:10%">
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaSanPham }, new { @class = "btn btn-outline-success w-100" })
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.MaSanPham }, new { @class = "btn btn-success my-2 w-100" })
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaSanPham }, new { @class = "btn btn-danger w-100" })
+            </td>
+        </tr>
+    }
 </table>
+<script>
+$(document).ready(function () {
+
+        if ($("#notice").is(':visible')) {
+            $("#notice").css({ "position": "fixed", "bottom": "5%", "right": "2%" })
+
+            $("#notice").fadeIn(2500, function () {
+                $("#notice").fadeOut(3000)
+            });
+        }
+    });</script>

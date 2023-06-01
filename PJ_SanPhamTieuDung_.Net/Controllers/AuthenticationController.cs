@@ -33,8 +33,10 @@ namespace PJ_SanPhamTieuDung_.Net.Controllers
                     var checkloaitaikhoan = (NguoiDung)Session["LoaiTaiKhoan"];
                     if (checkloaitaikhoan.MaLoaiTaiKhoan == 1 || checkloaitaikhoan.MaLoaiTaiKhoan == 2)
                     {
+                        TempData["SuccessMessage"] = "Đăng nhập thành công";
                         return RedirectToAction("Index", "Home");
                     }
+                    TempData["SuccessMessage"] = "Đăng nhập thành công";
                     return RedirectToAction("Index","HomeSP");
                 }
                 else

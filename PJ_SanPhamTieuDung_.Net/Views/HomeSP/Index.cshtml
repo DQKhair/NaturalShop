@@ -38,14 +38,14 @@
     <div class="row bg_gioithieu text-center py-3 me-3 fs-5" style="background-image:url(https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com\/o\/Picture_SanPhamTieuDung%2FBG_gioithieu.jpg?alt=media&token=827302b3-5229-42b9-a50f-184c668cdcc6)">
         <div class="col-md">
             <p>Hotline:</p>
-            <p><b>0925.328.842</b></p>
+            <p><b>034 989 4655</b></p>
         </div>
         <div class="col-md">
             <p>Liên kết nhanh</p>
             <div class=" d-flex justify-content-center">
-                <p><a href="#"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fpngwing.com%20(3).png?alt=media&token=40d5d907-64dd-4594-939b-4528c8b54c57" alt=""></a></p>
+                <p><a href="https://www.facebook.com/marketingonlinesbt112996"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fpngwing.com%20(3).png?alt=media&token=40d5d907-64dd-4594-939b-4528c8b54c57" alt=""></a></p>
                 <p class="mx-2"><a href="#"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fpngwing.com.png?alt=media&token=0a376481-1aad-4340-b6de-c784faad9465" alt=""></a></p>
-                <p><a href="https://zalo.me/0925328842"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fzalo.png?alt=media&token=4c86ae04-bb78-43a0-a36a-a16594b4f0b4" alt=""></a></p>
+                <p><a href="https://zalo.me/0566639087"><img style="width: 2rem;" src="https://firebasestorage.googleapis.com/v0/b/sanphamtieudung-2bc7e.appspot.com/o/Picture_SanPhamTieuDung%2Fzalo.png?alt=media&token=4c86ae04-bb78-43a0-a36a-a16594b4f0b4" alt=""></a></p>
             </div>
         </div>
     </div>
@@ -61,18 +61,18 @@
 
             @foreach (var item in ViewBag.dmsp1)
             {
-                    <div class="col">
-                        <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                            <div class="card h-100">
-                                <img src="@item.HinhAnh" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-dark">@item.TenSanPham</h5>
-                                    <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
-                                </div>
-                                <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
+                <div class="col">
+                    <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                        <div class="card h-100">
+                            <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                                <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
                             </div>
-                        </a>
-                    </div>
+                            <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
+                        </div>
+                    </a>
+                </div>
             }
         </div>
     </div>
@@ -164,19 +164,19 @@
     <div class="row row-cols-2 row-cols-md-4 g-4 my-3 text-center">
         @foreach (var item in ViewBag.SanPhamNoiBat)
         {
-        <div class="col">
-            
-            <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
-                <div class="card h-100">
-                    <img src="@item.HinhAnh" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">@item.TenSanPham</h5>
-                        <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+            <div class="col">
+
+                <a class="text-decoration-none" href="@Url.Action("Details", "HomeSP",new { id = @item.MaSanPham })">
+                    <div class="card h-100">
+                        <img src="@item.HinhAnh" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">@item.TenSanPham</h5>
+                            <p class="card-text text-danger">@item.DonGia.ToString("n0") VNĐ</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
                     </div>
-                    <div class="card-footer bg-white border-top-0 pb-3"><a class="btn btn-success mt-2" href="@Url.Action("Details", "HomeSP", new { id = @item.MaSanPham })"><i class="fa-solid fa-cart-shopping"></i> Mua sản phẩm</a></div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
         }
 
     </div>

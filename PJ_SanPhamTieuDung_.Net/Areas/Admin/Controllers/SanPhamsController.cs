@@ -54,6 +54,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             {
                 db.SanPhams.Add(sanPham);
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Thêm sản phẩm thành công";
                 return RedirectToAction("Index");
             }
 
@@ -88,6 +89,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             {
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Lưu thành công";
                 return RedirectToAction("Index");
             }
             ViewBag.MaDanhMucSanPham = new SelectList(db.DanhMucSanPhams, "MaDanhMucSanPham", "TenDanhMucSanPham", sanPham.MaDanhMucSanPham);
@@ -117,6 +119,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             SanPham sanPham = db.SanPhams.Find(id);
             db.SanPhams.Remove(sanPham);
             db.SaveChanges();
+            TempData["SuccessMessage"] = "Xóa sản phẩm thành công";
             return RedirectToAction("Index");
         }
 

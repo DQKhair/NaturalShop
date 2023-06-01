@@ -56,6 +56,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.NguoiDungs.Add(nguoiDung);
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Thêm nhân viên thành công";
                 return RedirectToAction("Index");
             }
             ViewBag.MaLoaiTaiKhoan = new SelectList(db.LoaiTaiKhoans, "MaLoaiTaiKhoan", "TenLoaiTaiKhoan", nguoiDung.MaLoaiTaiKhoan);
@@ -95,6 +96,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
                 nguoiDung.SdtNguoiDung = SdtNguoiDung;
                 nguoiDung.DiaChiNguoiDung = DiaChiNguoiDung;
                 db.SaveChanges();
+                TempData["SuccessMessage"] = "Lưu thành công";
                 return RedirectToAction("Index");
             }
                 //db.Entry(nguoiDung).State = EntityState.Modified;
@@ -127,6 +129,7 @@ namespace PJ_SanPhamTieuDung_.Net.Areas.Admin.Controllers
             NguoiDung nguoiDung = db.NguoiDungs.Find(id);
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
+            TempData["SuccessMessage"] = "Xóa nhân viên thành công";
             return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
